@@ -74,13 +74,13 @@ int Terrace::FindInsertionPos (double value)
   return insertionPos;
 }
 
-double Terrace::GetValue (double x, double y, double z) const
+double Terrace::GetValue (double x, double y) const
 {
   assert (m_pSourceModule[0] != NULL);
   assert (m_controlPointCount >= 2);
 
   // Get the output value from the source module.
-  double sourceModuleValue = m_pSourceModule[0]->GetValue (x, y, z);
+  double sourceModuleValue = m_pSourceModule[0]->GetValue (x, y);
 
   // Find the first element in the control point array that has a value
   // larger than the output value from the source module.

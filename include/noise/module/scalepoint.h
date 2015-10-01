@@ -87,7 +87,7 @@ namespace noise
           return 1;
         }
 
-        virtual double GetValue (double x, double y, double z) const;
+        virtual double GetValue (double x, double y) const;
 
         /// Returns the scaling factor applied to the @a x coordinate of the
         /// input value.

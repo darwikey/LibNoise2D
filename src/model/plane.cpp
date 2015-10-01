@@ -39,5 +39,5 @@ double Plane::GetValue (double x, double z) const
 {
   assert (m_pModule != NULL);
   
-  return m_pModule->GetValue (x, 0, z);
+  return m_pModule->GetValue (x, z);
 }

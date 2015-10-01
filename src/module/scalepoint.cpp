@@ -32,10 +32,9 @@ ScalePoint::ScalePoint ():
 {
 }
 
-double ScalePoint::GetValue (double x, double y, double z) const
+double ScalePoint::GetValue (double x, double y) const
 {
   assert (m_pSourceModule[0] != NULL);
 
-  return m_pSourceModule[0]->GetValue (x * m_xScale, y * m_yScale,
-    z * m_zScale);
+  return m_pSourceModule[0]->GetValue (x * m_xScale, y * m_yScale);
 }

@@ -52,11 +52,10 @@ void RidgedMulti::CalcSpectralWeights ()
 
 // Multifractal code originally written by F. Kenton "Doc Mojo" Musgrave,
 // 1998.  Modified by jas for use with libnoise.
-double RidgedMulti::GetValue (double x, double y, double z) const
+double RidgedMulti::GetValue (double x, double y) const
 {
   x *= m_frequency;
   y *= m_frequency;
-  z *= m_frequency;
 
   double signal = 0.0;
   double value  = 0.0;
@@ -71,14 +70,13 @@ double RidgedMulti::GetValue (double x, double y, double z) const
 
     // Make sure that these floating-point values have the same range as a 32-
     // bit integer so that we can pass them to the coherent-noise functions.
-    double nx, ny, nz;
+    double nx, ny;
     nx = MakeInt32Range (x);
     ny = MakeInt32Range (y);
-    nz = MakeInt32Range (z);
 
     // Get the coherent-noise value.
     int seed = (m_seed + curOctave) & 0x7fffffff;
-    signal = GradientCoherentNoise3D (nx, ny, nz, seed, m_noiseQuality);
+    signal = GradientCoherentNoise2D (nx, ny, seed, m_noiseQuality);
 
     // Make the ridges.
     signal = fabs (signal);
@@ -107,7 +105,6 @@ double RidgedMulti::GetValue (double x, double y, double z) const
     // Go to the next octave.
     x *= m_lacunarity;
     y *= m_lacunarity;
-    z *= m_lacunarity;
   }
 
   return (value * 1.25) - 1.0;

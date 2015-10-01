@@ -819,7 +819,6 @@ void WriterTER::WriteDestFile()
 // NoiseMapBuilder class
 
 NoiseMapBuilder::NoiseMapBuilder():
-    m_pCallback(NULL),
     m_destHeight(0),
     m_destWidth(0),
     m_pDestNoiseMap(NULL),
@@ -827,67 +826,6 @@ NoiseMapBuilder::NoiseMapBuilder():
 {
 }
 
-void NoiseMapBuilder::SetCallback(NoiseMapCallback pCallback)
-{
-    m_pCallback = pCallback;
-}
-
-/////////////////////////////////////////////////////////////////////////////
-// NoiseMapBuilderCylinder class
-
-NoiseMapBuilderCylinder::NoiseMapBuilderCylinder():
-    m_lowerAngleBound(0.0),
-    m_lowerHeightBound(0.0),
-    m_upperAngleBound(0.0),
-    m_upperHeightBound(0.0)
-{
-}
-
-void NoiseMapBuilderCylinder::Build()
-{
-    if (m_upperAngleBound <= m_lowerAngleBound
-        || m_upperHeightBound <= m_lowerHeightBound
-        || m_destWidth <= 0
-        || m_destHeight <= 0
-        || m_pSourceModule == NULL
-        || m_pDestNoiseMap == NULL)
-    {
-        throw noise::ExceptionInvalidParam();
-    }
-
-    // Resize the destination noise map so that it can store the new output
-    // values from the source model.
-    m_pDestNoiseMap->SetSize(m_destWidth, m_destHeight);
-
-    // Create the cylinder model.
-    model::Cylinder cylinderModel;
-    cylinderModel.SetModule(*m_pSourceModule);
-
-    double angleExtent  = m_upperAngleBound  - m_lowerAngleBound ;
-    double heightExtent = m_upperHeightBound - m_lowerHeightBound;
-    double xDelta = angleExtent  / (double)m_destWidth ;
-    double yDelta = heightExtent / (double)m_destHeight;
-    double curAngle  = m_lowerAngleBound ;
-    double curHeight = m_lowerHeightBound;
-
-    // Fill every point in the noise map with the output values from the model.
-    for (int y = 0; y < m_destHeight; y++)
-    {
-        float* pDest = m_pDestNoiseMap->GetSlabPtr(y);
-        curAngle = m_lowerAngleBound;
-        for (int x = 0; x < m_destWidth; x++)
-        {
-            float curValue = (float)cylinderModel.GetValue(curAngle, curHeight);
-            *pDest++ = curValue;
-            curAngle += xDelta;
-        }
-        curHeight += yDelta;
-        if (m_pCallback != NULL)
-        {
-            m_pCallback(y);
-        }
-    }
-}
 
 /////////////////////////////////////////////////////////////////////////////
 // NoiseMapBuilderPlane class
@@ -957,69 +895,10 @@ void NoiseMapBuilderPlane::Build()
             xCur += xDelta;
         }
         zCur += zDelta;
-        if (m_pCallback != NULL)
-        {
-            m_pCallback(z);
-        }
+        
     }
 }
 
-/////////////////////////////////////////////////////////////////////////////
-// NoiseMapBuilderSphere class
-
-NoiseMapBuilderSphere::NoiseMapBuilderSphere():
-    m_eastLonBound(0.0),
-    m_northLatBound(0.0),
-    m_southLatBound(0.0),
-    m_westLonBound(0.0)
-{
-}
-
-void NoiseMapBuilderSphere::Build()
-{
-    if (m_eastLonBound <= m_westLonBound
-        || m_northLatBound <= m_southLatBound
-        || m_destWidth <= 0
-        || m_destHeight <= 0
-        || m_pSourceModule == NULL
-        || m_pDestNoiseMap == NULL)
-    {
-        throw noise::ExceptionInvalidParam();
-    }
-
-    // Resize the destination noise map so that it can store the new output
-    // values from the source model.
-    m_pDestNoiseMap->SetSize(m_destWidth, m_destHeight);
-
-    // Create the plane model.
-    model::Sphere sphereModel;
-    sphereModel.SetModule(*m_pSourceModule);
-
-    double lonExtent = m_eastLonBound  - m_westLonBound ;
-    double latExtent = m_northLatBound - m_southLatBound;
-    double xDelta = lonExtent / (double)m_destWidth ;
-    double yDelta = latExtent / (double)m_destHeight;
-    double curLon = m_westLonBound ;
-    double curLat = m_southLatBound;
-
-    // Fill every point in the noise map with the output values from the model.
-    for (int y = 0; y < m_destHeight; y++)
-    {
-        float* pDest = m_pDestNoiseMap->GetSlabPtr(y);
-        curLon = m_westLonBound;
-        for (int x = 0; x < m_destWidth; x++)
-        {
-            float curValue = (float)sphereModel.GetValue(curLat, curLon);
-            *pDest++ = curValue;
-            curLon += xDelta;
-        }
-        curLat += yDelta;
-        if (m_pCallback != NULL)
-        {
-            m_pCallback(y);
-        }
-    }
-}
 
 //////////////////////////////////////////////////////////////////////////////
 // RendererImage class

@@ -77,7 +77,7 @@ namespace noise
           return 1;
         }
 
-        virtual double GetValue (double x, double y, double z) const;
+        virtual double GetValue (double x, double y) const;
 
         virtual void SetSourceModule (int index, const Module& sourceModule)
         {
@@ -98,10 +98,7 @@ namespace noise
         mutable double m_xCache;
 
         /// @a y coordinate of the cached input value.
-        mutable double m_yCache;
-
-        /// @a z coordinate of the cached input value.
-        mutable double m_zCache;
+		mutable double m_yCache;
 
     };
 
