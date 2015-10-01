@@ -27,7 +27,7 @@
 #include <string.h>
 #include <string>
 
-#include <noise/noise.h>
+#include <noise.h>
 
 using namespace noise;
 
@@ -86,16 +86,6 @@ namespace noise
         const int RASTER_STRIDE_BOUNDARY = 4;
 #endif
 
-        /// A pointer to a callback function used by the NoiseMapBuilder class.
-        ///
-        /// The NoiseMapBuilder::Build() method calls this callback function each
-        /// time it fills a row of the noise map with coherent-noise values.
-        ///
-        /// This callback function has a single integer parameter that contains
-        /// a count of the rows that have been completed.  It returns void.  Pass
-        /// a function with this signature to the NoiseMapBuilder::SetCallback()
-        /// method.
-        typedef void(*NoiseMapCallback)(int row);
 
         /// Number of meters per point in a Terragen terrain (TER) file.
         const float DEFAULT_METERS_PER_POINT = 30.0f;
@@ -1388,16 +1378,6 @@ namespace noise
                     return m_destWidth;
                 }
 
-                /// Sets the callback function that Build() calls each time it fills a
-                /// row of the noise map with coherent-noise values.
-                ///
-                /// @param pCallback The callback function.
-                ///
-                /// This callback function has a single integer parameter that
-                /// contains a count of the rows that have been completed.  It returns
-                /// void.  Pass a function with this signature to the SetCallback()
-                /// method.
-                void SetCallback(NoiseMapCallback pCallback);
 
                 /// Sets the destination noise map.
                 ///
@@ -1444,14 +1424,6 @@ namespace noise
 
             protected:
 
-                /// The callback function that Build() calls each time it fills a row
-                /// of the noise map with coherent-noise values.
-                ///
-                /// This callback function has a single integer parameter that
-                /// contains a count of the rows that have been completed.  It returns
-                /// void.  Pass a function with this signature to the SetCallback()
-                /// method.
-                NoiseMapCallback m_pCallback;
 
                 /// Height of the destination noise map, in points.
                 int m_destHeight;
@@ -1467,123 +1439,7 @@ namespace noise
 
         };
 
-        /// Builds a cylindrical noise map.
-        ///
-        /// This class builds a noise map by filling it with coherent-noise values
-        /// generated from the surface of a cylinder.
-        ///
-        /// This class describes these input values using an (angle, height)
-        /// coordinate system.  After generating the coherent-noise value from the
-        /// input value, it then "flattens" these coordinates onto a plane so that
-        /// it can write the values into a two-dimensional noise map.
-        ///
-        /// The cylinder model has a radius of 1.0 unit and has infinite height.
-        /// The cylinder is oriented along the @a y axis.  Its center is at the
-        /// origin.
-        ///
-        /// The x coordinate in the noise map represents the angle around the
-        /// cylinder's y axis.  The y coordinate in the noise map represents the
-        /// height above the x-z plane.
-        ///
-        /// The application must provide the lower and upper angle bounds of the
-        /// noise map, in degrees, and the lower and upper height bounds of the
-        /// noise map, in units.
-        class NoiseMapBuilderCylinder: public NoiseMapBuilder
-        {
-
-            public:
-
-                /// Constructor.
-                NoiseMapBuilderCylinder();
-
-                virtual void Build();
-
-                /// Returns the lower angle boundary of the cylindrical noise map.
-                ///
-                /// @returns The lower angle boundary of the noise map, in degrees.
-                double GetLowerAngleBound() const
-                {
-                    return m_lowerAngleBound;
-                }
-
-                /// Returns the lower height boundary of the cylindrical noise map.
-                ///
-                /// @returns The lower height boundary of the noise map, in units.
-                ///
-                /// One unit is equal to the radius of the cylinder.
-                double GetLowerHeightBound() const
-                {
-                    return m_lowerHeightBound;
-                }
-
-                /// Returns the upper angle boundary of the cylindrical noise map.
-                ///
-                /// @returns The upper angle boundary of the noise map, in degrees.
-                double GetUpperAngleBound() const
-                {
-                    return m_upperAngleBound;
-                }
-
-                /// Returns the upper height boundary of the cylindrical noise map.
-                ///
-                /// @returns The upper height boundary of the noise map, in units.
-                ///
-                /// One unit is equal to the radius of the cylinder.
-                double GetUpperHeightBound() const
-                {
-                    return m_upperHeightBound;
-                }
-
-                /// Sets the coordinate boundaries of the noise map.
-                ///
-                /// @param lowerAngleBound The lower angle boundary of the noise map,
-                /// in degrees.
-                /// @param upperAngleBound The upper angle boundary of the noise map,
-                /// in degrees.
-                /// @param lowerHeightBound The lower height boundary of the noise
-                /// map, in units.
-                /// @param upperHeightBound The upper height boundary of the noise
-                /// map, in units.
-                ///
-                /// @pre The lower angle boundary is less than the upper angle
-                /// boundary.
-                /// @pre The lower height boundary is less than the upper height
-                /// boundary.
-                ///
-                /// @throw noise::ExceptionInvalidParam See the preconditions.
-                ///
-                /// One unit is equal to the radius of the cylinder.
-                void SetBounds(double lowerAngleBound, double upperAngleBound,
-                               double lowerHeightBound, double upperHeightBound)
-                {
-                    if (lowerAngleBound >= upperAngleBound
-                        || lowerHeightBound >= upperHeightBound)
-                    {
-                        throw noise::ExceptionInvalidParam();
-                    }
-
-                    m_lowerAngleBound  = lowerAngleBound ;
-                    m_upperAngleBound  = upperAngleBound ;
-                    m_lowerHeightBound = lowerHeightBound;
-                    m_upperHeightBound = upperHeightBound;
-                }
-
-            private:
-
-                /// Lower angle boundary of the cylindrical noise map, in degrees.
-                double m_lowerAngleBound;
-
-                /// Lower height boundary of the cylindrical noise map, in units.
-                double m_lowerHeightBound;
-
-                /// Upper angle boundary of the cylindrical noise map, in degrees.
-                double m_upperAngleBound;
-
-                /// Upper height boundary of the cylindrical noise map, in units.
-                double m_upperHeightBound;
-
-        };
-
+        
         /// Builds a planar noise map.
         ///
         /// This class builds a noise map by filling it with coherent-noise values
@@ -1713,112 +1569,6 @@ namespace noise
 
         };
 
-
-        /// Builds a spherical noise map.
-        ///
-        /// This class builds a noise map by filling it with coherent-noise values
-        /// generated from the surface of a sphere.
-        ///
-        /// This class describes these input values using a (latitude, longitude)
-        /// coordinate system.  After generating the coherent-noise value from the
-        /// input value, it then "flattens" these coordinates onto a plane so that
-        /// it can write the values into a two-dimensional noise map.
-        ///
-        /// The sphere model has a radius of 1.0 unit.  Its center is at the
-        /// origin.
-        ///
-        /// The x coordinate in the noise map represents the longitude.  The y
-        /// coordinate in the noise map represents the latitude.
-        ///
-        /// The application must provide the southern, northern, western, and
-        /// eastern bounds of the noise map, in degrees.
-        class NoiseMapBuilderSphere: public NoiseMapBuilder
-        {
-
-            public:
-
-                /// Constructor.
-                NoiseMapBuilderSphere();
-
-                virtual void Build();
-
-                /// Returns the eastern boundary of the spherical noise map.
-                ///
-                /// @returns The eastern boundary of the noise map, in degrees.
-                double GetEastLonBound() const
-                {
-                    return m_eastLonBound;
-                }
-
-                /// Returns the northern boundary of the spherical noise map
-                ///
-                /// @returns The northern boundary of the noise map, in degrees.
-                double GetNorthLatBound() const
-                {
-                    return m_northLatBound;
-                }
-
-                /// Returns the southern boundary of the spherical noise map
-                ///
-                /// @returns The southern boundary of the noise map, in degrees.
-                double GetSouthLatBound() const
-                {
-                    return m_southLatBound;
-                }
-
-                /// Returns the western boundary of the spherical noise map
-                ///
-                /// @returns The western boundary of the noise map, in degrees.
-                double GetWestLonBound() const
-                {
-                    return m_westLonBound;
-                }
-
-                /// Sets the coordinate boundaries of the noise map.
-                ///
-                /// @param southLatBound The southern boundary of the noise map, in
-                /// degrees.
-                /// @param northLatBound The northern boundary of the noise map, in
-                /// degrees.
-                /// @param westLonBound The western boundary of the noise map, in
-                /// degrees.
-                /// @param eastLonBound The eastern boundary of the noise map, in
-                /// degrees.
-                ///
-                /// @pre The southern boundary is less than the northern boundary.
-                /// @pre The western boundary is less than the eastern boundary.
-                ///
-                /// @throw noise::ExceptionInvalidParam See the preconditions.
-                void SetBounds(double southLatBound, double northLatBound,
-                               double westLonBound, double eastLonBound)
-                {
-                    if (southLatBound >= northLatBound
-                        || westLonBound >= eastLonBound)
-                    {
-                        throw noise::ExceptionInvalidParam();
-                    }
-
-                    m_southLatBound = southLatBound;
-                    m_northLatBound = northLatBound;
-                    m_westLonBound  = westLonBound ;
-                    m_eastLonBound  = eastLonBound ;
-                }
-
-            private:
-
-                /// Eastern boundary of the spherical noise map, in degrees.
-                double m_eastLonBound;
-
-                /// Northern boundary of the spherical noise map, in degrees.
-                double m_northLatBound;
-
-                /// Southern boundary of the spherical noise map, in degrees.
-                double m_southLatBound;
-
-                /// Western boundary of the spherical noise map, in degrees.
-                double m_westLonBound;
-
-        };
 
         /// Renders an image from a noise map.
         ///

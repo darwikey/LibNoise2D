@@ -30,11 +30,9 @@ set(
 	${INC_DIR}/noise/noise.h
 	${INC_DIR}/noise/noisegen.h
 	${INC_DIR}/noise/vectortable.h
-	${INC_DIR}/noise/model/cylinder.h
 	${INC_DIR}/noise/model/line.h
 	${INC_DIR}/noise/model/model.h
 	${INC_DIR}/noise/model/plane.h
-	${INC_DIR}/noise/model/sphere.h
 	${INC_DIR}/noise/module/abs.h
 	${INC_DIR}/noise/module/add.h
 	${INC_DIR}/noise/module/billow.h
@@ -44,7 +42,6 @@ set(
 	${INC_DIR}/noise/module/clamp.h
 	${INC_DIR}/noise/module/const.h
 	${INC_DIR}/noise/module/curve.h
-	${INC_DIR}/noise/module/cylinders.h
 	${INC_DIR}/noise/module/displace.h
 	${INC_DIR}/noise/module/exponent.h
 	${INC_DIR}/noise/module/invert.h
@@ -60,7 +57,6 @@ set(
 	${INC_DIR}/noise/module/scalebias.h
 	${INC_DIR}/noise/module/scalepoint.h
 	${INC_DIR}/noise/module/select.h
-	${INC_DIR}/noise/module/spheres.h
 	${INC_DIR}/noise/module/terrace.h
 	${INC_DIR}/noise/module/translatepoint.h
 	${INC_DIR}/noise/module/turbulence.h
@@ -69,10 +65,8 @@ set(
 	${SRC_DIR}/LibnoiseUtils.cpp
 	${SRC_DIR}/latlon.cpp
 	${SRC_DIR}/noisegen.cpp
-	${SRC_DIR}/model/cylinder.cpp
 	${SRC_DIR}/model/line.cpp
 	${SRC_DIR}/model/plane.cpp
-	${SRC_DIR}/model/sphere.cpp
 	${SRC_DIR}/module/abs.cpp
 	${SRC_DIR}/module/add.cpp
 	${SRC_DIR}/module/billow.cpp
@@ -82,7 +76,6 @@ set(
 	${SRC_DIR}/module/clamp.cpp
 	${SRC_DIR}/module/const.cpp
 	${SRC_DIR}/module/curve.cpp
-	${SRC_DIR}/module/cylinders.cpp
 	${SRC_DIR}/module/displace.cpp
 	${SRC_DIR}/module/exponent.cpp
 	${SRC_DIR}/module/invert.cpp
@@ -97,14 +90,13 @@ set(
 	${SRC_DIR}/module/scalebias.cpp
 	${SRC_DIR}/module/scalepoint.cpp
 	${SRC_DIR}/module/select.cpp
-	${SRC_DIR}/module/spheres.cpp
 	${SRC_DIR}/module/terrace.cpp
 	${SRC_DIR}/module/translatepoint.cpp
 	${SRC_DIR}/module/turbulence.cpp
 	${SRC_DIR}/module/voronoi.cpp
 )
 
-include_directories( ${INC_DIR}/noise )
+include_directories( ${INC_DIR} ${INC_DIR}/noise )
 
 add_library( libnoise ${LIB_TYPE} ${SOURCES} )
 
