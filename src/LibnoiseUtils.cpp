@@ -815,31 +815,8 @@ void WriterTER::WriteDestFile()
     delete[] pLineBuffer;
 }
 
-/////////////////////////////////////////////////////////////////////////////
-// NoiseMapBuilder class
 
-NoiseMapBuilder::NoiseMapBuilder():
-    m_destHeight(0),
-    m_destWidth(0),
-    m_pDestNoiseMap(NULL),
-    m_pSourceModule(NULL)
-{
-}
-
-
-/////////////////////////////////////////////////////////////////////////////
-// NoiseMapBuilderPlane class
-
-NoiseMapBuilderPlane::NoiseMapBuilderPlane():
-    m_isSeamlessEnabled(false),
-    m_lowerXBound(0.0),
-    m_lowerZBound(0.0),
-    m_upperXBound(0.0),
-    m_upperZBound(0.0)
-{
-}
-
-void NoiseMapBuilderPlane::Build()
+void NoiseMapBuilder::Build()
 {
     if (m_upperXBound <= m_lowerXBound
         || m_upperZBound <= m_lowerZBound
