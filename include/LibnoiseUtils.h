@@ -1124,7 +1124,7 @@ namespace noise
             public:
 
                 /// Constructor.
-                NoiseMapBuilder();
+				NoiseMapBuilder() {};
 
                 /// Builds the noise map.
                 ///
