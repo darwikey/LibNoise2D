@@ -118,7 +118,7 @@ namespace noise
   /// A noise function differs from a random-number generator because it
   /// always returns the same output value if the same input value is passed
   /// to it.
-  double GradientNoise2D (double fx, double fy, int ix, int iy, int seed = 0);
+  inline double GradientNoise2D(double fx, double fz, int ix, int iz, int seed);
 
   /// Generates an integer-noise value from the coordinates of a
   /// three-dimensional input value.
@@ -165,23 +165,7 @@ namespace noise
     }
   }
 
-  /// Generates a value-coherent-noise value from the coordinates of a
-  /// three-dimensional input value.
-  ///
-  /// @param x The @a x coordinate of the input value.
-  /// @param y The @a y coordinate of the input value.
-  /// @param z The @a z coordinate of the input value.
-  /// @param seed The random number seed.
-  /// @param noiseQuality The quality of the coherent-noise.
-  ///
-  /// @returns The generated value-coherent-noise value.
-  ///
-  /// The return value ranges from -1.0 to +1.0.
-  ///
-  /// For an explanation of the difference between <i>gradient</i> noise and
-  /// <i>value</i> noise, see the comments for the GradientNoise3D() function.
-  double ValueCoherentNoise2D (double x, double y, int seed = 0,
-    NoiseQuality noiseQuality = QUALITY_STD);
+
 
   /// Generates a value-noise value from the coordinates of a
   /// three-dimensional input value.
