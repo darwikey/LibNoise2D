@@ -42,7 +42,7 @@ namespace noise
     /// @{
 
     /// Default constant value for the noise::module::Const noise module.
-    const double DEFAULT_CONST_VALUE = 0.0;
+    const real DEFAULT_CONST_VALUE = 0.0;
 
     /// Noise module that outputs a constant value.
     ///
@@ -68,7 +68,7 @@ namespace noise
         /// Returns the constant output value for this noise module.
         ///
         /// @returns The constant output value for this noise module.
-        double GetConstValue () const
+        real GetConstValue () const
         {
           return m_constValue;
         }
@@ -78,7 +78,7 @@ namespace noise
           return 0;
         }
 
-        virtual double GetValue (double x, double y) const
+        virtual real GetValue (real x, real y) const
         {
           return m_constValue;
         }
@@ -86,7 +86,7 @@ namespace noise
         /// Sets the constant output value for this noise module.
         ///
         /// @param constValue The constant output value for this noise module.
-        void SetConstValue (double constValue)
+        void SetConstValue (real constValue)
         {
           m_constValue = constValue;
         }
@@ -94,7 +94,7 @@ namespace noise
       protected:
 
         /// Constant value.
-        double m_constValue;
+        real m_constValue;
 
     };
 

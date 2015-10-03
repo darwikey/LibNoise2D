@@ -41,15 +41,15 @@ namespace noise
     /// @{
 
     /// Default edge-falloff value for the noise::module::Select noise module.
-    const double DEFAULT_SELECT_EDGE_FALLOFF = 0.0;
+    const real DEFAULT_SELECT_EDGE_FALLOFF = 0.0;
 
     /// Default lower bound of the selection range for the
     /// noise::module::Select noise module.
-    const double DEFAULT_SELECT_LOWER_BOUND = -1.0;
+    const real DEFAULT_SELECT_LOWER_BOUND = -1.0;
 
     /// Default upper bound of the selection range for the
     /// noise::module::Select noise module.
-    const double DEFAULT_SELECT_UPPER_BOUND = 1.0;
+    const real DEFAULT_SELECT_UPPER_BOUND = 1.0;
 
     /// Noise module that outputs the value selected from one of two source
     /// modules chosen by the output value from a control module.
@@ -132,7 +132,7 @@ namespace noise
         /// By default, there is an abrupt transition between the output
         /// values from the two source modules at the selection-range
         /// boundary.
-        double GetEdgeFalloff () const
+        real GetEdgeFalloff () const
         {
           return m_edgeFalloff;
         }
@@ -145,7 +145,7 @@ namespace noise
         /// selection range, the GetValue() method outputs the value from the
         /// source module with an index value of 1.  Otherwise, this method
         /// outputs the value from the source module with an index value of 0.
-        double GetLowerBound () const
+        real GetLowerBound () const
         {
           return m_lowerBound;
         }
@@ -163,12 +163,12 @@ namespace noise
         /// selection range, the GetValue() method outputs the value from the
         /// source module with an index value of 1.  Otherwise, this method
         /// outputs the value from the source module with an index value of 0.
-        double GetUpperBound () const
+        real GetUpperBound () const
         {
           return m_upperBound;
         }
 
-        virtual double GetValue (double x, double y) const;
+        virtual real GetValue (real x, real y) const;
 
         /// Sets the lower and upper bounds of the selection range.
         ///
@@ -185,7 +185,7 @@ namespace noise
         /// selection range, the GetValue() method outputs the value from the
         /// source module with an index value of 1.  Otherwise, this method
         /// outputs the value from the source module with an index value of 0.
-        void SetBounds (double lowerBound, double upperBound);
+        void SetBounds (real lowerBound, real upperBound);
 
         /// Sets the control module.
         ///
@@ -239,18 +239,18 @@ namespace noise
         /// - the output value from the source module with an index value of 0
         ///   if the output value from the control module is greater than 0.9
         ///   ( = 0.8 + 0.1).
-        void SetEdgeFalloff (double edgeFalloff);
+        void SetEdgeFalloff (real edgeFalloff);
 
       protected:
 
         /// Edge-falloff value.
-        double m_edgeFalloff;
+        real m_edgeFalloff;
 
         /// Lower bound of the selection range.
-        double m_lowerBound;
+        real m_lowerBound;
 
         /// Upper bound of the selection range.
-        double m_upperBound;
+        real m_upperBound;
 
     };
 

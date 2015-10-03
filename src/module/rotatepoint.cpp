@@ -31,20 +31,20 @@ RotatePoint::RotatePoint ():
   SetAngles (DEFAULT_ROTATE_X, DEFAULT_ROTATE_Y, DEFAULT_ROTATE_Z);
 }
 
-double RotatePoint::GetValue (double x, double y) const
+real RotatePoint::GetValue (real x, real y) const
 {
   assert (m_pSourceModule[0] != NULL);
 
-  double nx = (m_x1Matrix * x) + (m_y1Matrix * y);
-  double ny = (m_x2Matrix * x) + (m_y2Matrix * y);
-  double nz = (m_x3Matrix * x) + (m_y3Matrix * y);
+  real nx = (m_x1Matrix * x) + (m_y1Matrix * y);
+  real ny = (m_x2Matrix * x) + (m_y2Matrix * y);
+  real nz = (m_x3Matrix * x) + (m_y3Matrix * y);
   return m_pSourceModule[0]->GetValue (nx, ny);
 }
 
-void RotatePoint::SetAngles (double xAngle, double yAngle,
-  double zAngle)
+void RotatePoint::SetAngles (real xAngle, real yAngle,
+  real zAngle)
 {
-  double xCos, yCos, zCos, xSin, ySin, zSin;
+  real xCos, yCos, zCos, xSin, ySin, zSin;
   xCos = cos (xAngle * DEG_TO_RAD);
   yCos = cos (yAngle * DEG_TO_RAD);
   zCos = cos (zAngle * DEG_TO_RAD);

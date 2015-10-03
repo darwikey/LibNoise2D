@@ -28,7 +28,7 @@ Power::Power ():
 {
 }
 
-double Power::GetValue (double x, double y) const
+real Power::GetValue (real x, real y) const
 {
   assert (m_pSourceModule[0] != NULL);
   assert (m_pSourceModule[1] != NULL);

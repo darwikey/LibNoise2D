@@ -35,12 +35,12 @@ Perlin::Perlin ():
 {
 }
 
-double Perlin::GetValue (double x, double y) const
+real Perlin::GetValue (real x, real y) const
 {
-  double value = 0.0;
-  double signal = 0.0;
-  double curPersistence = 1.0;
-  double nx, ny;
+  real value = 0.0;
+  real signal = 0.0;
+  real curPersistence = 1.0;
+  real nx, ny;
   int seed;
 
   x *= m_frequency;

@@ -30,10 +30,10 @@ Exponent::Exponent ():
 {
 }
 
-double Exponent::GetValue (double x, double y) const
+real Exponent::GetValue (real x, real y) const
 {
   assert (m_pSourceModule[0] != NULL);
 
-  double value = m_pSourceModule[0]->GetValue (x, y);
-  return (pow (fabs ((value + 1.0) / 2.0), m_exponent) * 2.0 - 1.0);
+  real value = m_pSourceModule[0]->GetValue (x, y);
+  return (std::pow (std::abs ((value + 1.0f) / 2.0f), m_exponent) * 2.0f - 1.0f);
 }

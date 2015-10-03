@@ -41,10 +41,10 @@ namespace noise
     /// @{
 
     /// Default frequency for the noise::module::Billow noise module.
-    const double DEFAULT_BILLOW_FREQUENCY = 1.0;
+    const real DEFAULT_BILLOW_FREQUENCY = 1.0;
 
     /// Default lacunarity for the the noise::module::Billow noise module.
-    const double DEFAULT_BILLOW_LACUNARITY = 2.0;
+    const real DEFAULT_BILLOW_LACUNARITY = 2.0;
 
     /// Default number of octaves for the the noise::module::Billow noise
     /// module.
@@ -52,7 +52,7 @@ namespace noise
 
     /// Default persistence value for the the noise::module::Billow noise
     /// module.
-    const double DEFAULT_BILLOW_PERSISTENCE = 0.5;
+    const real DEFAULT_BILLOW_PERSISTENCE = 0.5;
 
     /// Default noise quality for the the noise::module::Billow noise module.
     const noise::NoiseQuality DEFAULT_BILLOW_QUALITY = QUALITY_STD;
@@ -101,7 +101,7 @@ namespace noise
         /// Returns the frequency of the first octave.
         ///
         /// @returns The frequency of the first octave.
-        double GetFrequency () const
+        real GetFrequency () const
         {
           return m_frequency;
         }
@@ -112,7 +112,7 @@ namespace noise
         /// 
         /// The lacunarity is the frequency multiplier between successive
         /// octaves.
-        double GetLacunarity () const
+        real GetLacunarity () const
         {
           return m_lacunarity;
         }
@@ -144,7 +144,7 @@ namespace noise
         /// @returns The persistence value of the billowy noise.
         ///
         /// The persistence value controls the roughness of the billowy noise.
-        double GetPersistence () const
+        real GetPersistence () const
         {
           return m_persistence;
         }
@@ -162,12 +162,12 @@ namespace noise
           return 0;
         }
 
-        virtual double GetValue (double x, double y) const;
+        virtual real GetValue (real x, real y) const;
 
         /// Sets the frequency of the first octave.
         ///
         /// @param frequency The frequency of the first octave.
-        void SetFrequency (double frequency)
+        void SetFrequency (real frequency)
         {
           m_frequency = frequency;
         }
@@ -181,7 +181,7 @@ namespace noise
         ///
         /// For best results, set the lacunarity to a number between 1.5 and
         /// 3.5.
-        void SetLacunarity (double lacunarity)
+        void SetLacunarity (real lacunarity)
         {
           m_lacunarity = lacunarity;
         }
@@ -229,7 +229,7 @@ namespace noise
         ///
         /// For best results, set the persistence value to a number between
         /// 0.0 and 1.0.
-        void SetPersistence (double persistence)
+        void SetPersistence (real persistence)
         {
           m_persistence = persistence;
         }
@@ -245,10 +245,10 @@ namespace noise
       protected:
 
         /// Frequency of the first octave.
-        double m_frequency;
+        real m_frequency;
 
         /// Frequency multiplier between successive octaves.
-        double m_lacunarity;
+        real m_lacunarity;
 
         /// Quality of the billowy noise.
         noise::NoiseQuality m_noiseQuality;
@@ -257,7 +257,7 @@ namespace noise
         int m_octaveCount;
 
         /// Persistence value of the billowy noise.
-        double m_persistence;
+        real m_persistence;
 
         /// Seed value used by the billowy-noise function.
         int m_seed;

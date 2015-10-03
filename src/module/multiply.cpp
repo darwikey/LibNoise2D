@@ -29,7 +29,7 @@ Multiply::Multiply ():
 {
 }
 
-double Multiply::GetValue (double x, double y) const
+real Multiply::GetValue (real x, real y) const
 {
   assert (m_pSourceModule[0] != NULL);
   assert (m_pSourceModule[1] != NULL);

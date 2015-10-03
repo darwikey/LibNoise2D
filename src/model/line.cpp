@@ -48,16 +48,16 @@ Line::Line (const module::Module& module):
 {
 }
 
-double Line::GetValue (double p) const
+real Line::GetValue (real p) const
 {
   assert (m_pModule != NULL);
 
-  double x = (m_x1 - m_x0) * p + m_x0;
-  double y = (m_y1 - m_y0) * p + m_y0;
-  double value = m_pModule->GetValue (x, y);
+  real x = (m_x1 - m_x0) * p + m_x0;
+  real y = (m_y1 - m_y0) * p + m_y0;
+  real value = m_pModule->GetValue (x, y);
 
   if (m_attenuate) {
-    return p * (1.0 - p) * 4 * value;
+    return p * (1.0f - p) * 4 * value;
   } else {
     return value;
   }

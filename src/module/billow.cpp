@@ -35,12 +35,12 @@ Billow::Billow ():
 {
 }
 
-double Billow::GetValue (double x, double y) const
+real Billow::GetValue (real x, real y) const
 {
-  double value = 0.0;
-  double signal = 0.0;
-  double curPersistence = 1.0;
-  double nx, ny;
+  real value = 0.0;
+  real signal = 0.0;
+  real curPersistence = 1.0;
+  real nx, ny;
   int seed;
 
   x *= m_frequency;
@@ -57,7 +57,7 @@ double Billow::GetValue (double x, double y) const
     // final result.
     seed = (m_seed + curOctave) & 0xffffffff;
     signal = GradientCoherentNoise2D (nx, ny, seed, m_noiseQuality);
-    signal = 2.0 * fabs (signal) - 1.0;
+    signal = 2.0f * std::abs (signal) - 1.0f;
     value += signal * curPersistence;
 
     // Prepare the next octave.

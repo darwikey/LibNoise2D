@@ -64,7 +64,7 @@ namespace noise
         return 0;
         }
 
-        virtual double GetValue (double x, double y) const;
+        virtual real GetValue (real x, real y) const;
 
     };
 

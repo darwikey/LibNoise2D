@@ -41,7 +41,7 @@ Terrace::~Terrace ()
   delete[] m_pControlPoints;
 }
 
-void Terrace::AddControlPoint (double value)
+void Terrace::AddControlPoint (real value)
 {
   // Find the insertion point for the new control point and insert the new
   // point at that position.  The control point array will remain sorted by
@@ -57,7 +57,7 @@ void Terrace::ClearAllControlPoints ()
   m_controlPointCount = 0;
 }
 
-int Terrace::FindInsertionPos (double value)
+int Terrace::FindInsertionPos (real value)
 {
   int insertionPos;
   for (insertionPos = 0; insertionPos < m_controlPointCount; insertionPos++) {
@@ -74,13 +74,13 @@ int Terrace::FindInsertionPos (double value)
   return insertionPos;
 }
 
-double Terrace::GetValue (double x, double y) const
+real Terrace::GetValue (real x, real y) const
 {
   assert (m_pSourceModule[0] != NULL);
   assert (m_controlPointCount >= 2);
 
   // Get the output value from the source module.
-  double sourceModuleValue = m_pSourceModule[0]->GetValue (x, y);
+  real sourceModuleValue = m_pSourceModule[0]->GetValue (x, y);
 
   // Find the first element in the control point array that has a value
   // larger than the output value from the source module.
@@ -105,9 +105,9 @@ double Terrace::GetValue (double x, double y) const
   }
 
   // Compute the alpha value used for linear interpolation.
-  double value0 = m_pControlPoints[index0];
-  double value1 = m_pControlPoints[index1];
-  double alpha = (sourceModuleValue - value0) / (value1 - value0);
+  real value0 = m_pControlPoints[index0];
+  real value1 = m_pControlPoints[index1];
+  real alpha = (sourceModuleValue - value0) / (value1 - value0);
   if (m_invertTerraces) {
     alpha = 1.0 - alpha;
     SwapValues (value0, value1);
@@ -120,13 +120,13 @@ double Terrace::GetValue (double x, double y) const
   return LinearInterp (value0, value1, alpha);
 }
 
-void Terrace::InsertAtPos (int insertionPos, double value)
+void Terrace::InsertAtPos (int insertionPos, real value)
 {
   // Make room for the new control point at the specified position within
   // the control point array.  The position is determined by the value of
   // the control point; the control points must be sorted by value within
   // that array.
-  double* newControlPoints = new double[m_controlPointCount + 1];
+  real* newControlPoints = new real[m_controlPointCount + 1];
   for (int i = 0; i < m_controlPointCount; i++) {
     if (i < insertionPos) {
       newControlPoints[i] = m_pControlPoints[i];
@@ -151,8 +151,8 @@ void Terrace::MakeControlPoints (int controlPointCount)
 
   ClearAllControlPoints ();
 
-  double terraceStep = 2.0 / ((double)controlPointCount - 1.0);
-  double curValue = -1.0;
+  real terraceStep = 2.0 / ((real)controlPointCount - 1.0);
+  real curValue = -1.0;
   for (int i = 0; i < (int)controlPointCount; i++) {
     AddControlPoint (curValue);
     curValue += terraceStep;

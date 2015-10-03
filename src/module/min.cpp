@@ -30,12 +30,12 @@ Min::Min ():
 {
 }
 
-double Min::GetValue (double x, double y) const
+real Min::GetValue (real x, real y) const
 {
   assert (m_pSourceModule[0] != NULL);
   assert (m_pSourceModule[1] != NULL);
 
-  double v0 = m_pSourceModule[0]->GetValue (x, y);
-  double v1 = m_pSourceModule[1]->GetValue (x, y);
+  real v0 = m_pSourceModule[0]->GetValue (x, y);
+  real v1 = m_pSourceModule[1]->GetValue (x, y);
   return GetMin (v0, v1);
 }

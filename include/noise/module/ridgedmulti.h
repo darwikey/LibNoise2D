@@ -41,10 +41,10 @@ namespace noise
     /// @{
 
     /// Default frequency for the noise::module::RidgedMulti noise module.
-    const double DEFAULT_RIDGED_FREQUENCY = 1.0;
+    const real DEFAULT_RIDGED_FREQUENCY = 1.0;
 
     /// Default lacunarity for the noise::module::RidgedMulti noise module.
-    const double DEFAULT_RIDGED_LACUNARITY = 2.0;
+    const real DEFAULT_RIDGED_LACUNARITY = 2.0;
 
     /// Default number of octaves for the noise::module::RidgedMulti noise
     /// module.
@@ -148,7 +148,7 @@ namespace noise
         /// Returns the frequency of the first octave.
         ///
         /// @returns The frequency of the first octave.
-        double GetFrequency () const
+        real GetFrequency () const
         {
           return m_frequency;
         }
@@ -159,7 +159,7 @@ namespace noise
         /// 
         /// The lacunarity is the frequency multiplier between successive
         /// octaves.
-        double GetLacunarity () const
+        real GetLacunarity () const
         {
           return m_lacunarity;
         }
@@ -202,12 +202,12 @@ namespace noise
           return 0;
         }
 
-        virtual double GetValue (double x, double y) const;
+        virtual real GetValue (real x, real y) const;
 
         /// Sets the frequency of the first octave.
         ///
         /// @param frequency The frequency of the first octave.
-        void SetFrequency (double frequency)
+        void SetFrequency (real frequency)
         {
           m_frequency = frequency;
         }
@@ -221,7 +221,7 @@ namespace noise
         ///
         /// For best results, set the lacunarity to a number between 1.5 and
         /// 3.5.
-        void SetLacunarity (double lacunarity)
+        void SetLacunarity (real lacunarity)
         {
           m_lacunarity = lacunarity;
           CalcSpectralWeights ();
@@ -280,10 +280,10 @@ namespace noise
         void CalcSpectralWeights ();
 
         /// Frequency of the first octave.
-        double m_frequency;
+        real m_frequency;
 
         /// Frequency multiplier between successive octaves.
-        double m_lacunarity;
+        real m_lacunarity;
 
         /// Quality of the ridged-multifractal noise.
         noise::NoiseQuality m_noiseQuality;
@@ -293,7 +293,7 @@ namespace noise
         int m_octaveCount;
 
         /// Contains the spectral weights for each octave.
-        double m_pSpectralWeights[RIDGED_MAX_OCTAVE];
+        real m_pSpectralWeights[RIDGED_MAX_OCTAVE];
 
         /// Seed value used by the ridged-multfractal-noise function.
         int m_seed;

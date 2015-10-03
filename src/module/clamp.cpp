@@ -31,11 +31,11 @@ Clamp::Clamp ():
 {
 }
 
-double Clamp::GetValue (double x, double y) const
+real Clamp::GetValue (real x, real y) const
 {
   assert (m_pSourceModule[0] != NULL);
 
-  double value = m_pSourceModule[0]->GetValue (x, y);
+  real value = m_pSourceModule[0]->GetValue (x, y);
   if (value < m_lowerBound) {
     return m_lowerBound;
   } else if (value > m_upperBound) {
@@ -45,7 +45,7 @@ double Clamp::GetValue (double x, double y) const
   }
 }
 
-void Clamp::SetBounds (double lowerBound, double upperBound)
+void Clamp::SetBounds (real lowerBound, real upperBound)
 {
   assert (lowerBound < upperBound);
 

@@ -35,7 +35,7 @@ Plane::Plane (const module::Module& module) :
 }
 
 // Told you this was trivial.
-double Plane::GetValue (double x, double z) const
+real Plane::GetValue (real x, real z) const
 {
   assert (m_pModule != NULL);
   

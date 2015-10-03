@@ -30,12 +30,12 @@ Max::Max ():
 {
 }
 
-double Max::GetValue (double x, double y) const
+real Max::GetValue (real x, real y) const
 {
   assert (m_pSourceModule[0] != NULL);
   assert (m_pSourceModule[1] != NULL);
 
-  double v0 = m_pSourceModule[0]->GetValue (x, y);
-  double v1 = m_pSourceModule[1]->GetValue (x, y);
+  real v0 = m_pSourceModule[0]->GetValue (x, y);
+  real v1 = m_pSourceModule[1]->GetValue (x, y);
   return GetMax (v0, v1);
 }

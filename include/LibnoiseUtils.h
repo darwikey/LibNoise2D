@@ -93,7 +93,7 @@ namespace noise
 
         /// Same as the DEFAULT_METERS_PER_POINT constant, but for us
         /// canuckleheads.
-        const double DEFAULT_METRES_PER_POINT = DEFAULT_METERS_PER_POINT;
+        const real DEFAULT_METRES_PER_POINT = DEFAULT_METERS_PER_POINT;
 
         /// Defines a color.
         ///
@@ -152,7 +152,7 @@ namespace noise
         {
 
             /// The position of this gradient point.
-            double pos;
+            real pos;
 
             /// The color of this gradient point.
             Color color;
@@ -209,7 +209,7 @@ namespace noise
                 /// @throw noise::ExceptionInvalidParam See the precondition.
                 ///
                 /// It does not matter which order these gradient points are added.
-                void AddGradientPoint(double gradientPos,
+                void AddGradientPoint(real gradientPos,
                                       const Color& gradientColor);
 
                 /// Deletes all the gradient points from this gradient object.
@@ -222,7 +222,7 @@ namespace noise
                 /// @param gradientPos The specified position.
                 ///
                 /// @returns The color at that position.
-                const Color& GetColor(double gradientPos) const;
+                const Color& GetColor(real gradientPos) const;
 
                 /// Returns a pointer to the array of gradient points in this object.
                 ///
@@ -264,7 +264,7 @@ namespace noise
                 /// object ensures that the gradient-point array is sorted by input
                 /// value.  The code that maps a value to a color requires a sorted
                 /// gradient-point array.
-                int FindInsertionPos(double gradientPos);
+                int FindInsertionPos(real gradientPos);
 
                 /// Inserts the gradient point at the specified position in the
                 /// internal gradient-point array.
@@ -281,7 +281,7 @@ namespace noise
                 /// Because this object requires that all gradient points in the array
                 /// must be sorted by the position, the new gradient point should be
                 /// inserted at the position in which the order is still preserved.
-                void InsertAtPos(int insertionPos, double gradientPos,
+                void InsertAtPos(int insertionPos, real gradientPos,
                                  const Color& gradientColor);
 
                 /// Number of gradient points.
@@ -1156,9 +1156,9 @@ namespace noise
                 ///
                 /// This object does not change the height in the destination noise
                 /// map object until the Build() method is called.
-                double GetDestHeight() const
+                real GetDestHeight() const
                 {
-                    return m_destHeight;
+                    return (real)m_destHeight;
                 }
 
                 /// Returns the width of the destination noise map.
@@ -1167,9 +1167,9 @@ namespace noise
                 ///
                 /// This object does not change the height in the destination noise
                 /// map object until the Build() method is called.
-                double GetDestWidth() const
+                real GetDestWidth() const
                 {
-                    return m_destWidth;
+                    return (real)m_destWidth;
                 }
 
 
@@ -1230,7 +1230,7 @@ namespace noise
 				/// Returns the lower x boundary of the planar noise map.
 				///
 				/// @returns The lower x boundary of the planar noise map, in units.
-				double GetLowerXBound() const
+				real GetLowerXBound() const
 				{
 					return m_lowerXBound;
 				}
@@ -1238,7 +1238,7 @@ namespace noise
 				/// Returns the lower z boundary of the planar noise map.
 				///
 				/// @returns The lower z boundary of the noise map, in units.
-				double GetLowerZBound() const
+				real GetLowerZBound() const
 				{
 					return m_lowerZBound;
 				}
@@ -1246,7 +1246,7 @@ namespace noise
 				/// Returns the upper x boundary of the planar noise map.
 				///
 				/// @returns The upper x boundary of the noise map, in units.
-				double GetUpperXBound() const
+				real GetUpperXBound() const
 				{
 					return m_upperXBound;
 				}
@@ -1254,7 +1254,7 @@ namespace noise
 				/// Returns the upper z boundary of the planar noise map.
 				///
 				/// @returns The upper z boundary of the noise map, in units.
-				double GetUpperZBound() const
+				real GetUpperZBound() const
 				{
 					return m_upperZBound;
 				}
@@ -1287,8 +1287,8 @@ namespace noise
 				/// @pre The lower z boundary is less than the upper z boundary.
 				///
 				/// @throw noise::ExceptionInvalidParam See the preconditions.
-				void SetBounds(double lowerXBound, double upperXBound,
-					double lowerZBound, double upperZBound)
+				void SetBounds(real lowerXBound, real upperXBound,
+					real lowerZBound, real upperZBound)
 				{
 					if (lowerXBound >= upperXBound
 						|| lowerZBound >= upperZBound)
@@ -1322,16 +1322,16 @@ namespace noise
 				bool m_isSeamlessEnabled = false;
 
 				/// Lower x boundary of the planar noise map, in units.
-				double m_lowerXBound = 0.0;
+				real m_lowerXBound = 0.0;
 
 				/// Lower z boundary of the planar noise map, in units.
-				double m_lowerZBound = 0.0;
+				real m_lowerZBound = 0.0;
 
 				/// Upper x boundary of the planar noise map, in units.
-				double m_upperXBound = 0.0;
+				real m_upperXBound = 0.0;
 
 				/// Upper z boundary of the planar noise map, in units.
-				double m_upperZBound = 0.0;
+				real m_upperZBound = 0.0;
 
         };
 

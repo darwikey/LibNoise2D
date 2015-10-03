@@ -38,7 +38,7 @@ Curve::~Curve ()
   delete[] m_pControlPoints;
 }
 
-void Curve::AddControlPoint (double inputValue, double outputValue)
+void Curve::AddControlPoint (real inputValue, real outputValue)
 {
   // Find the insertion point for the new control point and insert the new
   // point at that position.  The control point array will remain sorted by
@@ -54,7 +54,7 @@ void Curve::ClearAllControlPoints ()
   m_controlPointCount = 0;
 }
 
-int Curve::FindInsertionPos (double inputValue)
+int Curve::FindInsertionPos (real inputValue)
 {
   int insertionPos;
   for (insertionPos = 0; insertionPos < m_controlPointCount; insertionPos++) {
@@ -71,13 +71,13 @@ int Curve::FindInsertionPos (double inputValue)
   return insertionPos;
 }
 
-double Curve::GetValue (double x, double y) const
+real Curve::GetValue (real x, real y) const
 {
   assert (m_pSourceModule[0] != NULL);
   assert (m_controlPointCount >= 4);
 
   // Get the output value from the source module.
-  double sourceModuleValue = m_pSourceModule[0]->GetValue (x, y);
+  real sourceModuleValue = m_pSourceModule[0]->GetValue (x, y);
 
   // Find the first element in the control point array that has an input value
   // larger than the output value from the source module.
@@ -104,9 +104,9 @@ double Curve::GetValue (double x, double y) const
   }
   
   // Compute the alpha value used for cubic interpolation.
-  double input0 = m_pControlPoints[index1].inputValue;
-  double input1 = m_pControlPoints[index2].inputValue;
-  double alpha = (sourceModuleValue - input0) / (input1 - input0);
+  real input0 = m_pControlPoints[index1].inputValue;
+  real input1 = m_pControlPoints[index2].inputValue;
+  real alpha = (sourceModuleValue - input0) / (input1 - input0);
 
   // Now perform the cubic interpolation given the alpha value.
   return CubicInterp (
@@ -117,8 +117,8 @@ double Curve::GetValue (double x, double y) const
     alpha);
 }
 
-void Curve::InsertAtPos (int insertionPos, double inputValue,
-  double outputValue)
+void Curve::InsertAtPos (int insertionPos, real inputValue,
+  real outputValue)
 {
   // Make room for the new control point at the specified position within the
   // control point array.  The position is determined by the input value of

@@ -41,10 +41,10 @@ namespace noise
     /// @{
 
     /// Default bias for the noise::module::ScaleBias noise module.
-    const double DEFAULT_BIAS = 0.0;
+    const real DEFAULT_BIAS = 0.0;
 
     /// Default scale for the noise::module::ScaleBias noise module.
-    const double DEFAULT_SCALE = 1.0;
+    const real DEFAULT_SCALE = 1.0;
 
     /// Noise module that applies a scaling factor and a bias to the output
     /// value from a source module.
@@ -76,7 +76,7 @@ namespace noise
         /// The GetValue() method retrieves the output value from the source
         /// module, multiplies it with the scaling factor, adds the bias to
         /// it, then outputs the value.
-        double GetBias () const
+        real GetBias () const
         {
           return m_bias;
         }
@@ -89,7 +89,7 @@ namespace noise
         /// The GetValue() method retrieves the output value from the source
         /// module, multiplies it with the scaling factor, adds the bias to
         /// it, then outputs the value.
-        double GetScale () const
+        real GetScale () const
         {
           return m_scale;
         }
@@ -99,7 +99,7 @@ namespace noise
           return 1;
         }
 
-        virtual double GetValue (double x, double y) const;
+        virtual real GetValue (real x, real y) const;
 
         /// Sets the bias to apply to the scaled output value from the source
         /// module.
@@ -109,7 +109,7 @@ namespace noise
         /// The GetValue() method retrieves the output value from the source
         /// module, multiplies it with the scaling factor, adds the bias to
         /// it, then outputs the value.
-        void SetBias (double bias)
+        void SetBias (real bias)
         {
           m_bias = bias;
         }
@@ -122,7 +122,7 @@ namespace noise
         /// The GetValue() method retrieves the output value from the source
         /// module, multiplies it with the scaling factor, adds the bias to
         /// it, then outputs the value.
-        void SetScale (double scale)
+        void SetScale (real scale)
         {
           m_scale = scale;
         }
@@ -130,11 +130,11 @@ namespace noise
       protected:
 
         /// Bias to apply to the scaled output value from the source module.
-        double m_bias;
+        real m_bias;
 
         /// Scaling factor to apply to the output value from the source
         /// module.
-        double m_scale;
+        real m_scale;
 
     };
 

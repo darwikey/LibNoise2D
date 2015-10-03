@@ -41,10 +41,10 @@ namespace noise
     {
 
       /// The input value.
-      double inputValue;
+      real inputValue;
 
       /// The output value that is mapped from the input value.
-      double outputValue;
+      real outputValue;
 
     };
 
@@ -100,7 +100,7 @@ namespace noise
         /// specified; see the preconditions for more information.
         ///
         /// It does not matter which order these points are added.
-        void AddControlPoint (double inputValue, double outputValue);
+        void AddControlPoint (real inputValue, real outputValue);
 
         /// Deletes all the control points on the curve.
         ///
@@ -135,7 +135,7 @@ namespace noise
           return 1;
         }
 
-        virtual double GetValue (double x, double y) const;
+        virtual real GetValue (real x, real y) const;
 
       protected:
 
@@ -155,7 +155,7 @@ namespace noise
         /// class ensures that the control point array is sorted by input
         /// value.  The code that maps a value onto the curve requires a
         /// sorted control point array.
-        int FindInsertionPos (double inputValue);
+        int FindInsertionPos (real inputValue);
 
         /// Inserts the control point at the specified position in the
         /// internal control point array.
@@ -173,8 +173,8 @@ namespace noise
         /// requires that all control points in the array must be sorted by
         /// input value, the new control point should be inserted at the
         /// position in which the order is still preserved.
-        void InsertAtPos (int insertionPos, double inputValue,
-          double outputValue);
+        void InsertAtPos (int insertionPos, real inputValue,
+          real outputValue);
 
         /// Number of control points on the curve.
         int m_controlPointCount;

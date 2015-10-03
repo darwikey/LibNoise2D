@@ -34,7 +34,7 @@ Voronoi::Voronoi ():
 {
 }
 
-double Voronoi::GetValue (double x, double y) const
+real Voronoi::GetValue (real x, real y) const
 {
   // This method could be more efficient by caching the seed values.  Fix
   // later.
@@ -45,9 +45,9 @@ double Voronoi::GetValue (double x, double y) const
   int xInt = (x > 0.0? (int)x: (int)x - 1);
   int yInt = (y > 0.0? (int)y: (int)y - 1);
 
-  double minDist = 2147483647.0;
-  double xCandidate = 0;
-  double yCandidate = 0;
+  real minDist = 2147483647.0;
+  real xCandidate = 0;
+  real yCandidate = 0;
 
   // Inside each unit cube, there is a seed point at a random position.  Go
   // through each of the nearby cubes until we find a cube with a seed point
@@ -57,11 +57,11 @@ double Voronoi::GetValue (double x, double y) const
 
         // Calculate the position and distance to the seed point inside of
         // this unit cube.
-        double xPos = xCur + ValueNoise2D (xCur, yCur, m_seed    );
-        double yPos = yCur + ValueNoise2D (xCur, yCur, m_seed + 1);
-        double xDist = xPos - x;
-        double yDist = yPos - y;
-        double dist = xDist * xDist + yDist * yDist;
+        real xPos = xCur + ValueNoise2D (xCur, yCur, m_seed    );
+        real yPos = yCur + ValueNoise2D (xCur, yCur, m_seed + 1);
+        real xDist = xPos - x;
+        real yDist = yPos - y;
+        real dist = xDist * xDist + yDist * yDist;
 
         if (dist < minDist) {
           // This seed point is closer to any others found so far, so record
@@ -74,19 +74,19 @@ double Voronoi::GetValue (double x, double y) const
     }
   
 
-  double value;
+  real value;
   if (m_enableDistance) {
     // Determine the distance to the nearest seed point.
-    double xDist = xCandidate - x;
-    double yDist = yCandidate - y;
+    real xDist = xCandidate - x;
+    real yDist = yCandidate - y;
     value = (sqrt (xDist * xDist + yDist * yDist)
-      ) * SQRT_3 - 1.0;
+      ) * SQRT_3 - 1.0f;
   } else {
     value = 0.0;
   }
 
   // Return the calculated distance with the displacement value applied.
-  return value + (m_displacement * (double)ValueNoise2D (
+  return value + (m_displacement * (real)ValueNoise2D (
     (int)(floor (xCandidate)),
     (int)(floor (yCandidate))));
 }

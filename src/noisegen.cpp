@@ -55,7 +55,7 @@ const int SEED_NOISE_GEN = 1013;
 const int SHIFT_NOISE_GEN = 8;
 #endif
 
-double noise::GradientCoherentNoise2D(double x, double z, int seed,
+real noise::GradientCoherentNoise2D(real x, real z, int seed,
 	NoiseQuality noiseQuality)
 {
 	// Create a unit-length cube aligned along an integer boundary.  This cube
@@ -67,19 +67,19 @@ double noise::GradientCoherentNoise2D(double x, double z, int seed,
 
 	// Map the difference between the coordinates of the input value and the
 	// coordinates of the cube's outer-lower-left vertex onto an S-curve.
-	double xs = 0, zs = 0;
+	real xs = 0, zs = 0;
 	switch (noiseQuality) {
 	case QUALITY_FAST:
-		xs = (x - (double)x0);
-		zs = (z - (double)z0);
+		xs = (x - (real)x0);
+		zs = (z - (real)z0);
 		break;
 	case QUALITY_STD:
-		xs = SCurve3(x - (double)x0);
-		zs = SCurve3(z - (double)z0);
+		xs = SCurve3(x - (real)x0);
+		zs = SCurve3(z - (real)z0);
 		break;
 	case QUALITY_BEST:
-		xs = SCurve5(x - (double)x0);
-		zs = SCurve5(z - (double)z0);
+		xs = SCurve5(x - (real)x0);
+		zs = SCurve5(z - (real)z0);
 		break;
 	}
 
@@ -88,7 +88,7 @@ double noise::GradientCoherentNoise2D(double x, double z, int seed,
 	// noise values using the S-curve value as the interpolant (trilinear
 	// interpolation.)
 
-	/*	double n0, n1, ix0, ix1, iy0, iy1;
+	/*	real n0, n1, ix0, ix1, iy0, iy1;
 	n0 = GradientNoise2D(x, z, x0, y0, z0, seed);
 	n1 = GradientNoise2D(x, z, x1, y0, z0, seed);
 	ix0 = LinearInterp(n0, n1, xs);
@@ -109,7 +109,7 @@ double noise::GradientCoherentNoise2D(double x, double z, int seed,
 
 	return LinearInterp(iy0, iy1, zs);*/
 
-	double n0, n1, ix1, ix0;
+	real n0, n1, ix1, ix0;
 
 	n0 = GradientNoise2D(x, z, x0, z0, seed);
 	n1 = GradientNoise2D(x, z, x1, z0, seed);
@@ -122,7 +122,7 @@ double noise::GradientCoherentNoise2D(double x, double z, int seed,
 	return LinearInterp(ix0, ix1, zs);
 }
 
-inline double noise::GradientNoise2D(double fx, double fz, int ix, int iz, int seed)
+inline real noise::GradientNoise2D(real fx, real fz, int ix, int iz, int seed)
 {
 	// Randomly generate a gradient vector given the integer coordinates of the
 	// input value.  This implementation generates a random number and uses it
@@ -136,19 +136,19 @@ inline double noise::GradientNoise2D(double fx, double fz, int ix, int iz, int s
 	vectorIndex &= 0xff;
 	vectorIndex = vectorIndex << 1;
 
-	double xvGradient = g_randomVectors[vectorIndex];
-	double zvGradient = g_randomVectors[vectorIndex + 1];
+	real xvGradient = g_randomVectors[vectorIndex];
+	real zvGradient = g_randomVectors[vectorIndex + 1];
 
 	// Set up us another vector equal to the distance between the two vectors
 	// passed to this function.
-	double xvPoint = (fx - (double)ix);
-	double zvPoint = (fz - (double)iz);
+	real xvPoint = (fx - (real)ix);
+	real zvPoint = (fz - (real)iz);
 
 	// Now compute the dot product of the gradient vector with the distance
 	// vector.  The resulting value is gradient noise.  Apply a scaling value
 	// so that this noise value ranges from -1.0 to 1.0.
 	return ((xvGradient * xvPoint)
-		+ (zvGradient * zvPoint)) * 2.12;
+		+ (zvGradient * zvPoint)) * 2.12f;
 }
 
 int noise::IntValueNoise2D(int x, int z, int seed)
@@ -165,7 +165,7 @@ int noise::IntValueNoise2D(int x, int z, int seed)
 }
 
 
-double noise::ValueNoise2D(int x, int y, int seed)
+real noise::ValueNoise2D(int x, int y, int seed)
 {
-	return 1.0 - ((double)IntValueNoise2D(x, y, seed) / 1073741824.0);
+	return 1.0 - ((real)IntValueNoise2D(x, y, seed) / 1073741824.0);
 }

@@ -41,10 +41,10 @@ namespace noise
     /// @{
 
     /// Default frequency for the noise::module::Turbulence noise module.
-    const double DEFAULT_TURBULENCE_FREQUENCY = DEFAULT_PERLIN_FREQUENCY;
+    const real DEFAULT_TURBULENCE_FREQUENCY = DEFAULT_PERLIN_FREQUENCY;
 
     /// Default power for the noise::module::Turbulence noise module.
-    const double DEFAULT_TURBULENCE_POWER = 1.0;
+    const real DEFAULT_TURBULENCE_POWER = 1.0;
 
     /// Default roughness for the noise::module::Turbulence noise module.
     const int DEFAULT_TURBULENCE_ROUGHNESS = 3;
@@ -136,7 +136,7 @@ namespace noise
         ///
         /// The frequency of the turbulence determines how rapidly the
         /// displacement amount changes.
-        double GetFrequency () const;
+        real GetFrequency () const;
 
         /// Returns the power of the turbulence.
         ///
@@ -144,7 +144,7 @@ namespace noise
         ///
         /// The power of the turbulence determines the scaling factor that is
         /// applied to the displacement amount.
-        double GetPower () const
+        real GetPower () const
         {
           return m_power;
         }
@@ -177,7 +177,7 @@ namespace noise
           return 1;
         }
 
-        virtual double GetValue (double x, double y) const;
+        virtual real GetValue (real x, real y) const;
 
         /// Sets the frequency of the turbulence.
         ///
@@ -185,7 +185,7 @@ namespace noise
         ///
         /// The frequency of the turbulence determines how rapidly the
         /// displacement amount changes.
-        void SetFrequency (double frequency)
+        void SetFrequency (real frequency)
         {
           // Set the frequency of each Perlin-noise module.
           m_xDistortModule.SetFrequency (frequency);
@@ -199,7 +199,7 @@ namespace noise
         ///
         /// The power of the turbulence determines the scaling factor that is
         /// applied to the displacement amount.
-        void SetPower (double power)
+        void SetPower (real power)
         {
           m_power = power;
         }
@@ -243,7 +243,7 @@ namespace noise
       protected:
 
         /// The power (scale) of the displacement.
-        double m_power;
+        real m_power;
 
         /// Noise module that displaces the @a x coordinate.
         Perlin m_xDistortModule;

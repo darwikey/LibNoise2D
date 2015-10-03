@@ -25,6 +25,7 @@
 
 #include <math.h>
 #include "basictypes.h"
+#include "mathconsts.h"
 
 namespace noise
 {
@@ -74,7 +75,7 @@ namespace noise
   ///
   /// For an explanation of the difference between <i>gradient</i> noise and
   /// <i>value</i> noise, see the comments for the GradientNoise3D() function.
-  double GradientCoherentNoise2D (double x, double y, int seed = 0,
+  real GradientCoherentNoise2D (real x, real y, int seed = 0,
     NoiseQuality noiseQuality = QUALITY_STD);
 
   /// Generates a gradient-noise value from the coordinates of a
@@ -118,7 +119,7 @@ namespace noise
   /// A noise function differs from a random-number generator because it
   /// always returns the same output value if the same input value is passed
   /// to it.
-  inline double GradientNoise2D(double fx, double fz, int ix, int iz, int seed);
+  inline real GradientNoise2D(real fx, real fz, int ix, int iz, int seed);
 
   /// Generates an integer-noise value from the coordinates of a
   /// three-dimensional input value.
@@ -151,15 +152,15 @@ namespace noise
   /// function, pass the @a x, @a y, and @a z coordinates to this function to
   /// ensure that these coordinates can be cast to a noise::int32 value.
   ///
-  /// Although you could do a straight cast from double to noise::int32, the
+  /// Although you could do a straight cast from real to noise::int32, the
   /// resulting value may differ between platforms.  By using this function,
   /// you ensure that the resulting value is identical between platforms.
-  inline double MakeInt32Range (double n)
+  inline real MakeInt32Range (real n)
   {
-    if (n >= 1073741824.0) {
-      return (2.0 * fmod (n, 1073741824.0)) - 1073741824.0;
-    } else if (n <= -1073741824.0) {
-      return (2.0 * fmod (n, 1073741824.0)) + 1073741824.0;
+    if (n >= (real)1073741824.0) {
+      return (2.0f * fmod (n, (real)1073741824.0f)) - 1073741824.0f;
+    } else if (n <= (real)-1073741824.0) {
+      return (2.0f * fmod (n, (real)1073741824.0f)) + 1073741824.0f;
     } else {
       return n;
     }
@@ -182,7 +183,7 @@ namespace noise
   /// A noise function differs from a random-number generator because it
   /// always returns the same output value if the same input value is passed
   /// to it.
-  double ValueNoise2D (int x, int y, int seed = 0);
+  real ValueNoise2D (int x, int y, int seed = 0);
 
   /// @}
 

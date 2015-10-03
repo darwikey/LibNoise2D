@@ -95,7 +95,7 @@ namespace noise
         /// increases.  At the control points, its slope resets to zero.
 	      ///
 	      /// It does not matter which order these points are added.
-	      void AddControlPoint (double value);
+	      void AddControlPoint (real value);
 
 	      /// Deletes all the control points on the terrace-forming curve.
 	      ///
@@ -118,7 +118,7 @@ namespace noise
 	      /// It is recommended that an application does not store this pointer
         /// for later use since the pointer to the array may change if the
         /// application calls another method of this object.
-	      const double* GetControlPointArray () const
+	      const real* GetControlPointArray () const
 	      {
 	        return m_pControlPoints;
 	      }
@@ -159,7 +159,7 @@ namespace noise
 	        return m_invertTerraces;
         }
 
-    	  virtual double GetValue (double x, double y) const;
+    	  virtual real GetValue (real x, real y) const;
 
 	      /// Creates a number of equally-spaced control points that range from
         /// -1 to +1.
@@ -198,7 +198,7 @@ namespace noise
         /// class ensures that the control point array is sorted by value.
         /// The code that maps a value onto the curve requires a sorted
         /// control point array.
-	      int FindInsertionPos (double value);
+	      int FindInsertionPos (real value);
 
 	      /// Inserts the control point at the specified position in the
 	      /// internal control point array.
@@ -215,7 +215,7 @@ namespace noise
         /// that all control points in the array be sorted by value, the new
         /// control point should be inserted at the position in which the
         /// order is still preserved.
-	      void InsertAtPos (int insertionPos, double value);
+	      void InsertAtPos (int insertionPos, real value);
 
 	      /// Number of control points stored in this noise module.
 	      int m_controlPointCount;
@@ -225,7 +225,7 @@ namespace noise
 	      bool m_invertTerraces;
 
 	      /// Array that stores the control points.
-	      double* m_pControlPoints;
+	      real* m_pControlPoints;
 
     };
 

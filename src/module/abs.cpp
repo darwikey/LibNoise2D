@@ -29,9 +29,9 @@ Abs::Abs ():
 {
 }
 
-double Abs::GetValue (double x, double y) const
+real Abs::GetValue (real x, real y) const
 {
   assert (m_pSourceModule[0] != NULL);
 
-  return fabs (m_pSourceModule[0]->GetValue (x, y));
+  return std::abs (m_pSourceModule[0]->GetValue (x, y));
 }

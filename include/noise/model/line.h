@@ -108,7 +108,7 @@ namespace noise
         /// If the value is not to be attenuated, @a p can safely range
         /// outside the 0.0 to 1.0 range; the output value will be
         /// extrapolated along the line that this segment is part of.
-        double GetValue (double p) const;
+        real GetValue (real p) const;
 
         /// Sets a flag indicating that the output value is to be attenuated
         /// (moved toward 0.0) as the ends of the line segment are approached.
@@ -126,7 +126,7 @@ namespace noise
         /// @param x x coordinate of the end position.
         /// @param y y coordinate of the end position.
         /// @param z z coordinate of the end position.
-        void SetEndPoint (double x, double y, double z)
+        void SetEndPoint (real x, real y, real z)
         {
           m_x1 = x;
           m_y1 = y;
@@ -151,7 +151,7 @@ namespace noise
         /// @param x x coordinate of the start position.
         /// @param y y coordinate of the start position.
         /// @param z z coordinate of the start position.
-        void SetStartPoint (double x, double y, double z)
+        void SetStartPoint (real x, real y, real z)
         {
           m_x0 = x;
           m_y0 = y;
@@ -168,22 +168,22 @@ namespace noise
         const module::Module* m_pModule;
 
         /// @a x coordinate of the start of the line segment.
-        double m_x0;
+        real m_x0;
 
         /// @a x coordinate of the end of the line segment.
-        double m_x1;
+        real m_x1;
 
         /// @a y coordinate of the start of the line segment.
-        double m_y0;
+        real m_y0;
 
         /// @a y coordinate of the end of the line segment.
-        double m_y1;
+        real m_y1;
 
         /// @a z coordinate of the start of the line segment.
-        double m_z0;
+        real m_z0;
 
         /// @a z coordinate of the end of the line segment.
-        double m_z1;
+        real m_z1;
 
     };
 

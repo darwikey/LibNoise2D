@@ -41,16 +41,16 @@ namespace noise
     /// @{
 
     /// Default frequency for the noise::module::Perlin noise module.
-    const double DEFAULT_PERLIN_FREQUENCY = 1.0;
+    const real DEFAULT_PERLIN_FREQUENCY = 1.0;
 
     /// Default lacunarity for the noise::module::Perlin noise module.
-    const double DEFAULT_PERLIN_LACUNARITY = 2.0;
+    const real DEFAULT_PERLIN_LACUNARITY = 2.0;
 
     /// Default number of octaves for the noise::module::Perlin noise module.
     const int DEFAULT_PERLIN_OCTAVE_COUNT = 6;
 
     /// Default persistence value for the noise::module::Perlin noise module.
-    const double DEFAULT_PERLIN_PERSISTENCE = 0.5;
+    const real DEFAULT_PERLIN_PERSISTENCE = 0.5;
 
     /// Default noise quality for the noise::module::Perlin noise module.
     const noise::NoiseQuality DEFAULT_PERLIN_QUALITY = QUALITY_STD;
@@ -99,9 +99,9 @@ namespace noise
     /// noise by calling the SetOctaveCount() method.
     ///
     /// These coherent-noise functions are called octaves because each octave
-    /// has, by default, double the frequency of the previous octave.  Musical
+    /// has, by default, real the frequency of the previous octave.  Musical
     /// tones have this property as well; a musical C tone that is one octave
-    /// higher than the previous C tone has double its frequency.
+    /// higher than the previous C tone has real its frequency.
     ///
     /// <b>Frequency</b>
     ///
@@ -183,7 +183,7 @@ namespace noise
         /// Returns the frequency of the first octave.
         ///
         /// @returns The frequency of the first octave.
-        double GetFrequency () const
+        real GetFrequency () const
         {
           return m_frequency;
         }
@@ -194,7 +194,7 @@ namespace noise
         /// 
         /// The lacunarity is the frequency multiplier between successive
         /// octaves.
-        double GetLacunarity () const
+        real GetLacunarity () const
         {
           return m_lacunarity;
         }
@@ -226,7 +226,7 @@ namespace noise
         /// @returns The persistence value of the Perlin noise.
         ///
         /// The persistence value controls the roughness of the Perlin noise.
-        double GetPersistence () const
+        real GetPersistence () const
         {
           return m_persistence;
         }
@@ -244,12 +244,12 @@ namespace noise
           return 0;
         }
 
-        virtual double GetValue (double x, double y) const;
+        virtual real GetValue (real x, real y) const;
 
         /// Sets the frequency of the first octave.
         ///
         /// @param frequency The frequency of the first octave.
-        void SetFrequency (double frequency)
+        void SetFrequency (real frequency)
         {
           m_frequency = frequency;
         }
@@ -263,7 +263,7 @@ namespace noise
         ///
         /// For best results, set the lacunarity to a number between 1.5 and
         /// 3.5.
-        void SetLacunarity (double lacunarity)
+        void SetLacunarity (real lacunarity)
         {
           m_lacunarity = lacunarity;
         }
@@ -311,7 +311,7 @@ namespace noise
         ///
         /// For best results, set the persistence to a number between 0.0 and
         /// 1.0.
-        void SetPersistence (double persistence)
+        void SetPersistence (real persistence)
         {
           m_persistence = persistence;
         }
@@ -327,10 +327,10 @@ namespace noise
       protected:
 
         /// Frequency of the first octave.
-        double m_frequency;
+        real m_frequency;
 
         /// Frequency multiplier between successive octaves.
-        double m_lacunarity;
+        real m_lacunarity;
 
         /// Quality of the Perlin noise.
         noise::NoiseQuality m_noiseQuality;
@@ -339,7 +339,7 @@ namespace noise
         int m_octaveCount;
 
         /// Persistence of the Perlin noise.
-        double m_persistence;
+        real m_persistence;
 
         /// Seed value used by the Perlin-noise function.
         int m_seed;

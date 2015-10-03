@@ -32,7 +32,7 @@ ScalePoint::ScalePoint ():
 {
 }
 
-double ScalePoint::GetValue (double x, double y) const
+real ScalePoint::GetValue (real x, real y) const
 {
   assert (m_pSourceModule[0] != NULL);
 

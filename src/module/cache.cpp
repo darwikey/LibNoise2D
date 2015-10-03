@@ -30,7 +30,7 @@ Cache::Cache ():
 {
 }
 
-double Cache::GetValue (double x, double y) const
+real Cache::GetValue (real x, real y) const
 {
   assert (m_pSourceModule[0] != NULL);
 

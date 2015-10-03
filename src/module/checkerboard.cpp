@@ -29,9 +29,9 @@ Checkerboard::Checkerboard ():
 {
 }
 
-double Checkerboard::GetValue (double x, double y) const
+real Checkerboard::GetValue (real x, real y) const
 {
   int ix = (int)(floor (MakeInt32Range (x)));
   int iy = (int)(floor (MakeInt32Range (y)));
-  return (ix & 1 ^ iy & 1)? -1.0: 1.0;
+  return (ix & 1 ^ iy & 1)? -1.0f: 1.0f;
 }
