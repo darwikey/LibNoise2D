@@ -109,7 +109,7 @@ real Terrace::GetValue (real x, real y) const
   real value1 = m_pControlPoints[index1];
   real alpha = (sourceModuleValue - value0) / (value1 - value0);
   if (m_invertTerraces) {
-    alpha = 1.0 - alpha;
+    alpha = 1.0f - alpha;
     SwapValues (value0, value1);
   }
 
@@ -151,7 +151,7 @@ void Terrace::MakeControlPoints (int controlPointCount)
 
   ClearAllControlPoints ();
 
-  real terraceStep = 2.0 / ((real)controlPointCount - 1.0);
+  real terraceStep = 2.0f / ((real)controlPointCount - 1.0f);
   real curValue = -1.0;
   for (int i = 0; i < (int)controlPointCount; i++) {
     AddControlPoint (curValue);

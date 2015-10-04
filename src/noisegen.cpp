@@ -151,7 +151,7 @@ inline real noise::GradientNoise2D(real fx, real fz, int ix, int iz, int seed)
 		+ (zvGradient * zvPoint)) * 2.12f;
 }
 
-int noise::IntValueNoise2D(int x, int z, int seed)
+inline int noise::IntValueNoise2D(int x, int z, int seed)
 {
 	// All constants are primes and must remain prime in order for this noise
 	// function to work correctly.
@@ -167,5 +167,5 @@ int noise::IntValueNoise2D(int x, int z, int seed)
 
 real noise::ValueNoise2D(int x, int y, int seed)
 {
-	return 1.0 - ((real)IntValueNoise2D(x, y, seed) / 1073741824.0);
+	return 1.0f - ((real)IntValueNoise2D(x, y, seed) / 1073741824.0f);
 }

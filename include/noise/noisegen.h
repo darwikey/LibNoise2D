@@ -136,7 +136,7 @@ namespace noise
   /// A noise function differs from a random-number generator because it
   /// always returns the same output value if the same input value is passed
   /// to it.
-  int IntValueNoise2D (int x, int y, int seed = 0);
+  inline int IntValueNoise2D (int x, int y, int seed = 0);
 
   /// Modifies a floating-point value so that it can be stored in a
   /// noise::int32 variable.
@@ -183,7 +183,7 @@ namespace noise
   /// A noise function differs from a random-number generator because it
   /// always returns the same output value if the same input value is passed
   /// to it.
-  real ValueNoise2D (int x, int y, int seed = 0);
+  inline real ValueNoise2D (int x, int y, int seed = 0);
 
   /// @}
 
