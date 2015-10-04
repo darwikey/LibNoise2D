@@ -25,7 +25,7 @@
 
 #include <cmath>
 
-#define NOISE_REAL float
+#define NOISE_REAL double
 
 // For whatever reason, I can't find the basic math consts in the MSVC version
 // of math.h.
