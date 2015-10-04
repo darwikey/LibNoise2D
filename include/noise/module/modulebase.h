@@ -46,7 +46,7 @@ namespace noise
     /// Abstract base class for noise modules.
     ///
     /// A <i>noise module</i> is an object that calculates and outputs a value
-    /// given a three-dimensional input value.
+    /// given a two-dimensional input value.
     ///
     /// Each type of noise module uses a specific method to calculate an
     /// output value.  Some of these methods include:

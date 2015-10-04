@@ -61,7 +61,7 @@ namespace noise
   };
 
   /// Generates a gradient-coherent-noise value from the coordinates of a
-  /// three-dimensional input value.
+  /// two-dimensional input value.
   ///
   /// @param x The @a x coordinate of the input value.
   /// @param y The @a y coordinate of the input value.
@@ -79,23 +79,18 @@ namespace noise
     NoiseQuality noiseQuality = QUALITY_STD);
 
   /// Generates a gradient-noise value from the coordinates of a
-  /// three-dimensional input value and the integer coordinates of a
-  /// nearby three-dimensional value.
+  /// two-dimensional input value and the integer coordinates of a
+  /// nearby two-dimensional value.
   ///
   /// @param fx The floating-point @a x coordinate of the input value.
-  /// @param fy The floating-point @a y coordinate of the input value.
   /// @param fz The floating-point @a z coordinate of the input value.
   /// @param ix The integer @a x coordinate of a nearby value.
-  /// @param iy The integer @a y coordinate of a nearby value.
   /// @param iz The integer @a z coordinate of a nearby value.
   /// @param seed The random number seed.
   ///
   /// @returns The generated gradient-noise value.
   ///
   /// @pre The difference between @a fx and @a ix must be less than or equal
-  /// to one.
-  ///
-  /// @pre The difference between @a fy and @a iy must be less than or equal
   /// to one.
   ///
   /// @pre The difference between @a fz and @a iz must be less than or equal
@@ -122,7 +117,7 @@ namespace noise
   inline NOISE_REAL GradientNoise2D(NOISE_REAL fx, NOISE_REAL fz, int ix, int iz, int seed);
 
   /// Generates an integer-noise value from the coordinates of a
-  /// three-dimensional input value.
+  /// two-dimensional input value.
   ///
   /// @param x The integer @a x coordinate of the input value.
   /// @param y The integer @a y coordinate of the input value.
@@ -136,7 +131,18 @@ namespace noise
   /// A noise function differs from a random-number generator because it
   /// always returns the same output value if the same input value is passed
   /// to it.
-  inline int IntValueNoise2D (int x, int y, int seed = 0);
+  inline int IntValueNoise2D (int x, int y, int seed = 0)
+  {
+	  // All constants are primes and must remain prime in order for this noise
+	  // function to work correctly.
+	  int n = (
+		  1619 * x
+		  + 6971 * y
+		  + 1013 * seed)
+		  & 0x7fffffff;
+	  n = (n >> 13) ^ n;
+	  return (n * (n * n * 60493 + 19990303) + 1376312589) & 0x7fffffff;
+  }
 
   /// Modifies a floating-point value so that it can be stored in a
   /// noise::int32 variable.
@@ -169,7 +175,7 @@ namespace noise
 
 
   /// Generates a value-noise value from the coordinates of a
-  /// three-dimensional input value.
+  /// two-dimensional input value.
   ///
   /// @param x The @a x coordinate of the input value.
   /// @param y The @a y coordinate of the input value.
@@ -183,7 +189,10 @@ namespace noise
   /// A noise function differs from a random-number generator because it
   /// always returns the same output value if the same input value is passed
   /// to it.
-  inline NOISE_REAL ValueNoise2D (int x, int y, int seed = 0);
+  inline NOISE_REAL ValueNoise2D (int x, int y, int seed = 0)
+  {
+	  return 1.0f - ((NOISE_REAL)IntValueNoise2D(x, y, seed) / 1073741824.0f);
+  }
 
   /// @}
 

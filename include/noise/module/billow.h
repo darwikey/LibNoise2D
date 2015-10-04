@@ -64,7 +64,7 @@ namespace noise
     /// module.
     const int BILLOW_MAX_OCTAVE = 30;
 
-    /// Noise module that outputs three-dimensional "billowy" noise.
+    /// Noise module that outputs two-dimensional "billowy" noise.
     ///
     /// @image html modulebillow.png
     ///

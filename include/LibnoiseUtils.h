@@ -88,12 +88,6 @@ namespace noise
 #endif
 
 
-        /// Number of meters per point in a Terragen terrain (TER) file.
-        const float DEFAULT_METERS_PER_POINT = 30.0f;
-
-        /// Same as the DEFAULT_METERS_PER_POINT constant, but for us
-        /// canuckleheads.
-        const NOISE_REAL DEFAULT_METRES_PER_POINT = DEFAULT_METERS_PER_POINT;
 
         /// Defines a color.
         ///
@@ -1089,8 +1083,8 @@ namespace noise
         /// Class for a noise-map builder
         ///
         /// A builder class builds a noise map by filling it with coherent-noise
-        /// values generated from the surface of a three-dimensional mathematical
-        /// object.  Each builder class defines a specific three-dimensional
+        /// values generated from the surface of a two-dimensional mathematical
+        /// object.  Each builder class defines a specific two-dimensional
         /// surface, such as a cylinder, sphere, or plane.
         ///
         /// A builder class describes these input values using a coordinate system

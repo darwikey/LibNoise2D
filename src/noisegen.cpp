@@ -150,22 +150,3 @@ inline NOISE_REAL noise::GradientNoise2D(NOISE_REAL fx, NOISE_REAL fz, int ix, i
 	return ((xvGradient * xvPoint)
 		+ (zvGradient * zvPoint)) * 2.12f;
 }
-
-inline int noise::IntValueNoise2D(int x, int z, int seed)
-{
-	// All constants are primes and must remain prime in order for this noise
-	// function to work correctly.
-	int n = (
-		X_NOISE_GEN    * x
-		+ Z_NOISE_GEN    * z
-		+ SEED_NOISE_GEN * seed)
-		& 0x7fffffff;
-	n = (n >> 13) ^ n;
-	return (n * (n * n * 60493 + 19990303) + 1376312589) & 0x7fffffff;
-}
-
-
-NOISE_REAL noise::ValueNoise2D(int x, int y, int seed)
-{
-	return 1.0f - ((NOISE_REAL)IntValueNoise2D(x, y, seed) / 1073741824.0f);
-}
