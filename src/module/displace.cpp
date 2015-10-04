@@ -29,7 +29,7 @@ Displace::Displace ():
 {
 }
 
-real Displace::GetValue (real x, real y) const
+NOISE_REAL Displace::GetValue (NOISE_REAL x, NOISE_REAL y) const
 {
   assert (m_pSourceModule[0] != NULL);
   assert (m_pSourceModule[1] != NULL);
@@ -37,8 +37,8 @@ real Displace::GetValue (real x, real y) const
 
   // Get the output values from the three displacement modules.  Add each
   // value to the corresponding coordinate in the input value.
-  real xDisplace = x + (m_pSourceModule[1]->GetValue (x, y));
-  real yDisplace = y + (m_pSourceModule[2]->GetValue (x, y));
+  NOISE_REAL xDisplace = x + (m_pSourceModule[1]->GetValue (x, y));
+  NOISE_REAL yDisplace = y + (m_pSourceModule[2]->GetValue (x, y));
 
   // Retrieve the output value using the offsetted input value instead of
   // the original input value.

@@ -33,7 +33,7 @@
 ///
 /// Coherent noise is often used by graphics programmers to generate
 /// natural-looking textures, planetary terrain, and other things. It can
-/// also be used to move critters in a realistic way.
+/// also be used to move critters in a NOISE_REAListic way.
 ///
 /// libnoise is known to compile using the following compilers on the
 /// following platforms:

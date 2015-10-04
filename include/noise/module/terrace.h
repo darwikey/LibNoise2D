@@ -95,7 +95,7 @@ namespace noise
         /// increases.  At the control points, its slope resets to zero.
 	      ///
 	      /// It does not matter which order these points are added.
-	      void AddControlPoint (real value);
+	      void AddControlPoint (NOISE_REAL value);
 
 	      /// Deletes all the control points on the terrace-forming curve.
 	      ///
@@ -118,7 +118,7 @@ namespace noise
 	      /// It is recommended that an application does not store this pointer
         /// for later use since the pointer to the array may change if the
         /// application calls another method of this object.
-	      const real* GetControlPointArray () const
+	      const NOISE_REAL* GetControlPointArray () const
 	      {
 	        return m_pControlPoints;
 	      }
@@ -159,7 +159,7 @@ namespace noise
 	        return m_invertTerraces;
         }
 
-    	  virtual real GetValue (real x, real y) const;
+    	  virtual NOISE_REAL GetValue (NOISE_REAL x, NOISE_REAL y) const;
 
 	      /// Creates a number of equally-spaced control points that range from
         /// -1 to +1.
@@ -198,7 +198,7 @@ namespace noise
         /// class ensures that the control point array is sorted by value.
         /// The code that maps a value onto the curve requires a sorted
         /// control point array.
-	      int FindInsertionPos (real value);
+	      int FindInsertionPos (NOISE_REAL value);
 
 	      /// Inserts the control point at the specified position in the
 	      /// internal control point array.
@@ -207,7 +207,7 @@ namespace noise
         /// insert the control point.
 	      /// @param value The value of the control point.
 	      ///
-	      /// To make room for this new control point, this method reallocates
+	      /// To make room for this new control point, this method NOISE_REALlocates
         /// the control point array and shifts all control points occurring
         /// after the insertion position up by one.
 	      ///
@@ -215,7 +215,7 @@ namespace noise
         /// that all control points in the array be sorted by value, the new
         /// control point should be inserted at the position in which the
         /// order is still preserved.
-	      void InsertAtPos (int insertionPos, real value);
+	      void InsertAtPos (int insertionPos, NOISE_REAL value);
 
 	      /// Number of control points stored in this noise module.
 	      int m_controlPointCount;
@@ -225,7 +225,7 @@ namespace noise
 	      bool m_invertTerraces;
 
 	      /// Array that stores the control points.
-	      real* m_pControlPoints;
+	      NOISE_REAL* m_pControlPoints;
 
     };
 

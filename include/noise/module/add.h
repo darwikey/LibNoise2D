@@ -60,7 +60,7 @@ namespace noise
           return 2;
         }
 
-        virtual real GetValue (real x, real y) const;
+        virtual NOISE_REAL GetValue (NOISE_REAL x, NOISE_REAL y) const;
 
     };
 

@@ -33,14 +33,14 @@ Select::Select ():
 {
 }
 
-real Select::GetValue (real x, real y) const
+NOISE_REAL Select::GetValue (NOISE_REAL x, NOISE_REAL y) const
 {
   assert (m_pSourceModule[0] != NULL);
   assert (m_pSourceModule[1] != NULL);
   assert (m_pSourceModule[2] != NULL);
 
-  real controlValue = m_pSourceModule[2]->GetValue (x, y);
-  real alpha;
+  NOISE_REAL controlValue = m_pSourceModule[2]->GetValue (x, y);
+  NOISE_REAL alpha;
   if (m_edgeFalloff > 0.0) {
     if (controlValue < (m_lowerBound - m_edgeFalloff)) {
       // The output value from the control module is below the selector
@@ -51,8 +51,8 @@ real Select::GetValue (real x, real y) const
       // The output value from the control module is near the lower end of the
       // selector threshold and within the smooth curve. Interpolate between
       // the output values from the first and second source modules.
-      real lowerCurve = (m_lowerBound - m_edgeFalloff);
-      real upperCurve = (m_lowerBound + m_edgeFalloff);
+      NOISE_REAL lowerCurve = (m_lowerBound - m_edgeFalloff);
+      NOISE_REAL upperCurve = (m_lowerBound + m_edgeFalloff);
       alpha = SCurve3 (
         (controlValue - lowerCurve) / (upperCurve - lowerCurve));
       return LinearInterp (m_pSourceModule[0]->GetValue (x, y),
@@ -68,8 +68,8 @@ real Select::GetValue (real x, real y) const
       // The output value from the control module is near the upper end of the
       // selector threshold and within the smooth curve. Interpolate between
       // the output values from the first and second source modules.
-      real lowerCurve = (m_upperBound - m_edgeFalloff);
-      real upperCurve = (m_upperBound + m_edgeFalloff);
+      NOISE_REAL lowerCurve = (m_upperBound - m_edgeFalloff);
+      NOISE_REAL upperCurve = (m_upperBound + m_edgeFalloff);
       alpha = SCurve3 (
         (controlValue - lowerCurve) / (upperCurve - lowerCurve));
       return LinearInterp (m_pSourceModule[1]->GetValue (x, y),
@@ -90,7 +90,7 @@ real Select::GetValue (real x, real y) const
   }
 }
 
-void Select::SetBounds (real lowerBound, real upperBound)
+void Select::SetBounds (NOISE_REAL lowerBound, NOISE_REAL upperBound)
 {
   assert (lowerBound < upperBound);
 
@@ -101,9 +101,9 @@ void Select::SetBounds (real lowerBound, real upperBound)
   SetEdgeFalloff (m_edgeFalloff);
 }
 
-void Select::SetEdgeFalloff (real edgeFalloff)
+void Select::SetEdgeFalloff (NOISE_REAL edgeFalloff)
 {
   // Make sure that the edge falloff curves do not overlap.
-  real boundSize = m_upperBound - m_lowerBound;
+  NOISE_REAL boundSize = m_upperBound - m_lowerBound;
   m_edgeFalloff = (edgeFalloff > boundSize / 2)? boundSize / 2: edgeFalloff;
 }

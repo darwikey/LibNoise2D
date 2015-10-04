@@ -34,7 +34,7 @@ Voronoi::Voronoi() :
 {
 }
 
-real Voronoi::GetValue(real x, real y) const
+NOISE_REAL Voronoi::GetValue(NOISE_REAL x, NOISE_REAL y) const
 {
 	// This method could be more efficient by caching the seed values.  Fix
 	// later.
@@ -45,9 +45,9 @@ real Voronoi::GetValue(real x, real y) const
 	int xInt = (x > 0.0 ? (int)x : (int)x - 1);
 	int yInt = (y > 0.0 ? (int)y : (int)y - 1);
 
-	real minDist = 2147483647.0;
-	real xCandidate = 0;
-	real yCandidate = 0;
+	NOISE_REAL minDist = 2147483647.0f;
+	NOISE_REAL xCandidate = 0;
+	NOISE_REAL yCandidate = 0;
 
 	// Inside each unit cube, there is a seed point at a random position.  Go
 	// through each of the nearby cubes until we find a cube with a seed point
@@ -57,11 +57,11 @@ real Voronoi::GetValue(real x, real y) const
 
 			// Calculate the position and distance to the seed point inside of
 			// this unit cube.
-			real xPos = xCur + ValueNoise2D(xCur, yCur, m_seed);
-			real yPos = yCur + ValueNoise2D(xCur, yCur, m_seed + 1);
-			real xDist = xPos - x;
-			real yDist = yPos - y;
-			real dist = xDist * xDist + yDist * yDist;
+			NOISE_REAL xPos = xCur + ValueNoise2D(xCur, yCur, m_seed);
+			NOISE_REAL yPos = yCur + ValueNoise2D(xCur, yCur, m_seed + 1);
+			NOISE_REAL xDist = xPos - x;
+			NOISE_REAL yDist = yPos - y;
+			NOISE_REAL dist = xDist * xDist + yDist * yDist;
 
 			if (dist < minDist) {
 				// This seed point is closer to any others found so far, so record
@@ -74,11 +74,11 @@ real Voronoi::GetValue(real x, real y) const
 	}
 
 
-	real value;
+	NOISE_REAL value;
 	if (m_enableDistance) {
 		// Determine the distance to the nearest seed point.
-		real xDist = xCandidate - x;
-		real yDist = yCandidate - y;
+		NOISE_REAL xDist = xCandidate - x;
+		NOISE_REAL yDist = yCandidate - y;
 		value = (sqrt(xDist * xDist + yDist * yDist)
 			) * SQRT_3 - 1.0f;
 	}
@@ -87,7 +87,7 @@ real Voronoi::GetValue(real x, real y) const
 	}
 
 	// Return the calculated distance with the displacement value applied.
-	return value + (m_displacement * (real)ValueNoise2D(
+	return value + (m_displacement * (NOISE_REAL)ValueNoise2D(
 		(int)(floor(xCandidate)),
 		(int)(floor(yCandidate))));
 }

@@ -48,13 +48,13 @@ Line::Line (const module::Module& module):
 {
 }
 
-real Line::GetValue (real p) const
+NOISE_REAL Line::GetValue (NOISE_REAL p) const
 {
   assert (m_pModule != NULL);
 
-  real x = (m_x1 - m_x0) * p + m_x0;
-  real y = (m_y1 - m_y0) * p + m_y0;
-  real value = m_pModule->GetValue (x, y);
+  NOISE_REAL x = (m_x1 - m_x0) * p + m_x0;
+  NOISE_REAL y = (m_y1 - m_y0) * p + m_y0;
+  NOISE_REAL value = m_pModule->GetValue (x, y);
 
   if (m_attenuate) {
     return p * (1.0f - p) * 4 * value;

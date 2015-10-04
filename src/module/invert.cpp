@@ -29,7 +29,7 @@ Invert::Invert ():
 {
 }
 
-real Invert::GetValue (real x, real y) const
+NOISE_REAL Invert::GetValue (NOISE_REAL x, NOISE_REAL y) const
 {
   assert (m_pSourceModule[0] != NULL);
 

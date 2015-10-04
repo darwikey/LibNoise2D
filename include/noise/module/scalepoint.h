@@ -42,15 +42,15 @@ namespace noise
 
     /// Default scaling factor applied to the @a x coordinate for the
     /// noise::module::ScalePoint noise module.
-    const real DEFAULT_SCALE_POINT_X = 1.0;
+    const NOISE_REAL DEFAULT_SCALE_POINT_X = 1.0;
 
     /// Default scaling factor applied to the @a y coordinate for the
     /// noise::module::ScalePoint noise module.
-    const real DEFAULT_SCALE_POINT_Y = 1.0;
+    const NOISE_REAL DEFAULT_SCALE_POINT_Y = 1.0;
 
     /// Default scaling factor applied to the @a z coordinate for the
     /// noise::module::ScalePoint noise module.
-    const real DEFAULT_SCALE_POINT_Z = 1.0;
+    const NOISE_REAL DEFAULT_SCALE_POINT_Z = 1.0;
 
     /// Noise module that scales the coordinates of the input value before
     /// returning the output value from a source module.
@@ -87,13 +87,13 @@ namespace noise
           return 1;
         }
 
-        virtual real GetValue (real x, real y) const;
+        virtual NOISE_REAL GetValue (NOISE_REAL x, NOISE_REAL y) const;
 
         /// Returns the scaling factor applied to the @a x coordinate of the
         /// input value.
         ///
         /// @returns The scaling factor applied to the @a x coordinate.
-        real GetXScale () const
+        NOISE_REAL GetXScale () const
         {
           return m_xScale;
         }
@@ -102,7 +102,7 @@ namespace noise
         /// input value.
         ///
         /// @returns The scaling factor applied to the @a y coordinate.
-        real GetYScale () const
+        NOISE_REAL GetYScale () const
         {
           return m_yScale;
         }
@@ -111,7 +111,7 @@ namespace noise
         /// input value.
         ///
         /// @returns The scaling factor applied to the @a z coordinate.
-        real GetZScale () const
+        NOISE_REAL GetZScale () const
         {
           return m_zScale;
         }
@@ -123,7 +123,7 @@ namespace noise
         /// The GetValue() method multiplies the ( @a x, @a y, @a z )
         /// coordinates of the input value with a scaling factor before
         /// returning the output value from the source module.
-        void SetScale (real scale)
+        void SetScale (NOISE_REAL scale)
         {
           m_xScale = scale;
           m_yScale = scale;
@@ -140,7 +140,7 @@ namespace noise
         /// The GetValue() method multiplies the ( @a x, @a y, @a z )
         /// coordinates of the input value with a scaling factor before
         /// returning the output value from the source module.
-        void SetScale (real xScale, real yScale, real zScale)
+        void SetScale (NOISE_REAL xScale, NOISE_REAL yScale, NOISE_REAL zScale)
         {
           m_xScale = xScale;
           m_yScale = yScale;
@@ -155,7 +155,7 @@ namespace noise
         /// The GetValue() method multiplies the ( @a x, @a y, @a z )
         /// coordinates of the input value with a scaling factor before
         /// returning the output value from the source module.
-        void SetXScale (real xScale)
+        void SetXScale (NOISE_REAL xScale)
         {
           m_xScale = xScale;
         }
@@ -168,7 +168,7 @@ namespace noise
         /// The GetValue() method multiplies the ( @a x, @a y, @a z )
         /// coordinates of the input value with a scaling factor before
         /// returning the output value from the source module.
-        void SetYScale (real yScale)
+        void SetYScale (NOISE_REAL yScale)
         {
           m_yScale = yScale;
         }
@@ -181,7 +181,7 @@ namespace noise
         /// The GetValue() method multiplies the ( @a x, @a y, @a z )
         /// coordinates of the input value with a scaling factor before
         /// returning the output value from the source module.
-        void SetZScale (real zScale)
+        void SetZScale (NOISE_REAL zScale)
         {
           m_zScale = zScale;
         }
@@ -189,13 +189,13 @@ namespace noise
       protected:
 
         /// Scaling factor applied to the @a x coordinate of the input value.
-        real m_xScale;
+        NOISE_REAL m_xScale;
 
         /// Scaling factor applied to the @a y coordinate of the input value.
-        real m_yScale;
+        NOISE_REAL m_yScale;
 
         /// Scaling factor applied to the @a z coordinate of the input value.
-        real m_zScale;
+        NOISE_REAL m_zScale;
 
     };
 

@@ -77,7 +77,7 @@ namespace noise
           return 1;
         }
 
-        virtual real GetValue (real x, real y) const;
+        virtual NOISE_REAL GetValue (NOISE_REAL x, NOISE_REAL y) const;
 
         virtual void SetSourceModule (int index, const Module& sourceModule)
         {
@@ -88,17 +88,17 @@ namespace noise
       protected:
 
         /// The cached output value at the cached input value.
-        mutable real m_cachedValue;
+        mutable NOISE_REAL m_cachedValue;
 
         /// Determines if a cached output value is stored in this noise
         /// module.
-        mutable real m_isCached;
+        mutable NOISE_REAL m_isCached;
 
         /// @a x coordinate of the cached input value.
-        mutable real m_xCache;
+        mutable NOISE_REAL m_xCache;
 
         /// @a y coordinate of the cached input value.
-		mutable real m_yCache;
+		mutable NOISE_REAL m_yCache;
 
     };
 

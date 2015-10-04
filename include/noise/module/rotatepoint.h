@@ -42,15 +42,15 @@ namespace noise
 
     /// Default @a x rotation angle for the noise::module::RotatePoint noise
     /// module.
-    const real DEFAULT_ROTATE_X = 0.0;
+    const NOISE_REAL DEFAULT_ROTATE_X = 0.0;
 
     /// Default @a y rotation angle for the noise::module::RotatePoint noise
     /// module.
-    const real DEFAULT_ROTATE_Y = 0.0;
+    const NOISE_REAL DEFAULT_ROTATE_Y = 0.0;
 
     /// Default @a z rotation angle for the noise::module::RotatePoint noise
     /// module.
-    const real DEFAULT_ROTATE_Z = 0.0;
+    const NOISE_REAL DEFAULT_ROTATE_Z = 0.0;
 
     /// Noise module that rotates the input value around the origin before
     /// returning the output value from a source module.
@@ -91,13 +91,13 @@ namespace noise
           return 1;
         }
 
-        virtual real GetValue (real x, real y) const;
+        virtual NOISE_REAL GetValue (NOISE_REAL x, NOISE_REAL y) const;
 
         /// Returns the rotation angle around the @a x axis to apply to the
         /// input value.
         ///
         /// @returns The rotation angle around the @a x axis, in degrees.
-        real GetXAngle () const
+        NOISE_REAL GetXAngle () const
         {
           return m_xAngle;
         }
@@ -106,7 +106,7 @@ namespace noise
         /// input value.
         ///
         /// @returns The rotation angle around the @a y axis, in degrees.
-        real GetYAngle () const
+        NOISE_REAL GetYAngle () const
         {
           return m_yAngle;
         }
@@ -115,7 +115,7 @@ namespace noise
         /// input value.
         ///
         /// @returns The rotation angle around the @a z axis, in degrees.
-        real GetZAngle () const
+        NOISE_REAL GetZAngle () const
         {
           return m_zAngle;
         }
@@ -130,7 +130,7 @@ namespace noise
         /// The GetValue() method rotates the coordinates of the input value
         /// around the origin before returning the output value from the
         /// source module.
-        void SetAngles (real xAngle, real yAngle, real zAngle);
+        void SetAngles (NOISE_REAL xAngle, NOISE_REAL yAngle, NOISE_REAL zAngle);
 
         /// Sets the rotation angle around the @a x axis to apply to the input
         /// value.
@@ -140,7 +140,7 @@ namespace noise
         /// The GetValue() method rotates the coordinates of the input value
         /// around the origin before returning the output value from the
         /// source module.
-        void SetXAngle (real xAngle)
+        void SetXAngle (NOISE_REAL xAngle)
         {
           SetAngles (xAngle, m_yAngle, m_zAngle);
         }
@@ -153,7 +153,7 @@ namespace noise
         /// The GetValue() method rotates the coordinates of the input value
         /// around the origin before returning the output value from the
         /// source module.
-        void SetYAngle (real yAngle)
+        void SetYAngle (NOISE_REAL yAngle)
         {
           SetAngles (m_xAngle, yAngle, m_zAngle);
         }
@@ -166,7 +166,7 @@ namespace noise
         /// The GetValue() method rotates the coordinates of the input value
         /// around the origin before returning the output value from the
         /// source module.
-        void SetZAngle (real zAngle)
+        void SetZAngle (NOISE_REAL zAngle)
         {
           SetAngles (m_xAngle, m_yAngle, zAngle);
         }
@@ -175,48 +175,48 @@ namespace noise
 
         /// An entry within the 3x3 rotation matrix used for rotating the
         /// input value.
-        real m_x1Matrix;
+        NOISE_REAL m_x1Matrix;
 
         /// An entry within the 3x3 rotation matrix used for rotating the
         /// input value.
-        real m_x2Matrix;
+        NOISE_REAL m_x2Matrix;
 
         /// An entry within the 3x3 rotation matrix used for rotating the
         /// input value.
-        real m_x3Matrix;
+        NOISE_REAL m_x3Matrix;
 
         /// @a x rotation angle applied to the input value, in degrees.
-        real m_xAngle;
+        NOISE_REAL m_xAngle;
 
         /// An entry within the 3x3 rotation matrix used for rotating the
         /// input value.
-        real m_y1Matrix;
+        NOISE_REAL m_y1Matrix;
 
         /// An entry within the 3x3 rotation matrix used for rotating the
         /// input value.
-        real m_y2Matrix;
+        NOISE_REAL m_y2Matrix;
 
         /// An entry within the 3x3 rotation matrix used for rotating the
         /// input value.
-        real m_y3Matrix;
+        NOISE_REAL m_y3Matrix;
 
         /// @a y rotation angle applied to the input value, in degrees.
-        real m_yAngle;
+        NOISE_REAL m_yAngle;
 
         /// An entry within the 3x3 rotation matrix used for rotating the
         /// input value.
-        real m_z1Matrix;
+        NOISE_REAL m_z1Matrix;
 
         /// An entry within the 3x3 rotation matrix used for rotating the
         /// input value.
-        real m_z2Matrix;
+        NOISE_REAL m_z2Matrix;
 
         /// An entry within the 3x3 rotation matrix used for rotating the
         /// input value.
-        real m_z3Matrix;
+        NOISE_REAL m_z3Matrix;
 
         /// @a z rotation angle applied to the input value, in degrees.
-        real m_zAngle;
+        NOISE_REAL m_zAngle;
 
     };
 

@@ -30,12 +30,12 @@ Min::Min ():
 {
 }
 
-real Min::GetValue (real x, real y) const
+NOISE_REAL Min::GetValue (NOISE_REAL x, NOISE_REAL y) const
 {
   assert (m_pSourceModule[0] != NULL);
   assert (m_pSourceModule[1] != NULL);
 
-  real v0 = m_pSourceModule[0]->GetValue (x, y);
-  real v1 = m_pSourceModule[1]->GetValue (x, y);
+  NOISE_REAL v0 = m_pSourceModule[0]->GetValue (x, y);
+  NOISE_REAL v1 = m_pSourceModule[1]->GetValue (x, y);
   return GetMin (v0, v1);
 }

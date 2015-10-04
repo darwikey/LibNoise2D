@@ -40,9 +40,9 @@ void RidgedMulti::CalcSpectralWeights ()
 {
   // This exponent parameter should be user-defined; it may be exposed in a
   // future version of libnoise.
-  real h = 1.0;
+  NOISE_REAL h = 1.0;
 
-  real frequency = 1.0;
+  NOISE_REAL frequency = 1.0;
   for (int i = 0; i < RIDGED_MAX_OCTAVE; i++) {
     // Compute weight for each frequency.
     m_pSpectralWeights[i] = pow (frequency, -h);
@@ -52,25 +52,25 @@ void RidgedMulti::CalcSpectralWeights ()
 
 // Multifractal code originally written by F. Kenton "Doc Mojo" Musgrave,
 // 1998.  Modified by jas for use with libnoise.
-real RidgedMulti::GetValue (real x, real y) const
+NOISE_REAL RidgedMulti::GetValue (NOISE_REAL x, NOISE_REAL y) const
 {
   x *= m_frequency;
   y *= m_frequency;
 
-  real signal = 0.0;
-  real value  = 0.0;
-  real weight = 1.0;
+  NOISE_REAL signal = 0.0;
+  NOISE_REAL value  = 0.0;
+  NOISE_REAL weight = 1.0;
 
   // These parameters should be user-defined; they may be exposed in a
   // future version of libnoise.
-  real offset = 1.0;
-  real gain = 2.0;
+  NOISE_REAL offset = 1.0;
+  NOISE_REAL gain = 2.0;
 
   for (int curOctave = 0; curOctave < m_octaveCount; curOctave++) {
 
     // Make sure that these floating-point values have the same range as a 32-
     // bit integer so that we can pass them to the coherent-noise functions.
-    real nx, ny;
+    NOISE_REAL nx, ny;
     nx = MakeInt32Range (x);
     ny = MakeInt32Range (y);
 

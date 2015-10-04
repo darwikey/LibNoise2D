@@ -33,7 +33,7 @@ Turbulence::Turbulence ():
   SetRoughness (DEFAULT_TURBULENCE_ROUGHNESS);
 }
 
-real Turbulence::GetFrequency () const
+NOISE_REAL Turbulence::GetFrequency () const
 {
   // Since each noise::module::Perlin noise module has the same frequency, it
   // does not matter which module we use to retrieve the frequency.
@@ -45,7 +45,7 @@ int Turbulence::GetSeed () const
   return m_xDistortModule.GetSeed ();
 }
 
-real Turbulence::GetValue (real x, real y) const
+NOISE_REAL Turbulence::GetValue (NOISE_REAL x, NOISE_REAL y) const
 {
   assert (m_pSourceModule[0] != NULL);
 
@@ -56,18 +56,18 @@ real Turbulence::GetValue (real x, real y) const
   // when multiplied by the frequency, are near an integer boundary.  This is
   // due to a property of gradient coherent noise, which returns zero at
   // integer boundaries.
-  real x0, y0;
-  real x1, y1;
-  real x2, y2;
+  NOISE_REAL x0, y0;
+  NOISE_REAL x1, y1;
+  NOISE_REAL x2, y2;
   x0 = x + (12414.0f / 65536.0f);
   y0 = y + (65124.0f / 65536.0f);
   x1 = x + (26519.0f / 65536.0f);
   y1 = y + (18128.0f / 65536.0f);
   x2 = x + (53820.0f / 65536.0f);
   y2 = y + (11213.0f / 65536.0f);
-  real xDistort = x + (m_xDistortModule.GetValue (x0, y0)
+  NOISE_REAL xDistort = x + (m_xDistortModule.GetValue (x0, y0)
     * m_power);
-  real yDistort = y + (m_yDistortModule.GetValue (x1, y1)
+  NOISE_REAL yDistort = y + (m_yDistortModule.GetValue (x1, y1)
     * m_power);
 
   // Retrieve the output value at the offsetted input value instead of the

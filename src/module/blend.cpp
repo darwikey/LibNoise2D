@@ -30,14 +30,14 @@ Blend::Blend ():
 {
 }
 
-real Blend::GetValue (real x, real y) const
+NOISE_REAL Blend::GetValue (NOISE_REAL x, NOISE_REAL y) const
 {
   assert (m_pSourceModule[0] != NULL);
   assert (m_pSourceModule[1] != NULL);
   assert (m_pSourceModule[2] != NULL);
 
-  real v0 = m_pSourceModule[0]->GetValue (x, y);
-  real v1 = m_pSourceModule[1]->GetValue (x, y);
-  real alpha = (m_pSourceModule[2]->GetValue (x, y) + 1.0f) / 2.0f;
+  NOISE_REAL v0 = m_pSourceModule[0]->GetValue (x, y);
+  NOISE_REAL v1 = m_pSourceModule[1]->GetValue (x, y);
+  NOISE_REAL alpha = (m_pSourceModule[2]->GetValue (x, y) + 1.0f) / 2.0f;
   return LinearInterp (v0, v1, alpha);
 }

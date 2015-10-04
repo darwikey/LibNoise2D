@@ -29,7 +29,7 @@ Checkerboard::Checkerboard ():
 {
 }
 
-real Checkerboard::GetValue (real x, real y) const
+NOISE_REAL Checkerboard::GetValue (NOISE_REAL x, NOISE_REAL y) const
 {
   int ix = (int)(floor (MakeInt32Range (x)));
   int iy = (int)(floor (MakeInt32Range (y)));

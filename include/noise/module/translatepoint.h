@@ -42,15 +42,15 @@ namespace noise
 
     /// Default translation factor applied to the @a x coordinate for the
     /// noise::module::TranslatePoint noise module.
-    const real DEFAULT_TRANSLATE_POINT_X = 0.0;
+    const NOISE_REAL DEFAULT_TRANSLATE_POINT_X = 0.0;
 
     /// Default translation factor applied to the @a y coordinate for the
     /// noise::module::TranslatePoint noise module.
-    const real DEFAULT_TRANSLATE_POINT_Y = 0.0;
+    const NOISE_REAL DEFAULT_TRANSLATE_POINT_Y = 0.0;
 
     /// Default translation factor applied to the @a z coordinate for the
     /// noise::module::TranslatePoint noise module.
-    const real DEFAULT_TRANSLATE_POINT_Z = 0.0;
+    const NOISE_REAL DEFAULT_TRANSLATE_POINT_Z = 0.0;
 
     /// Noise module that moves the coordinates of the input value before
     /// returning the output value from a source module.
@@ -88,13 +88,13 @@ namespace noise
           return 1;
         }
 
-        virtual real GetValue (real x, real y) const;
+        virtual NOISE_REAL GetValue (NOISE_REAL x, NOISE_REAL y) const;
 
         /// Returns the translation amount to apply to the @a x coordinate of
         /// the input value.
         ///
         /// @returns The translation amount to apply to the @a x coordinate.
-        real GetXTranslation () const
+        NOISE_REAL GetXTranslation () const
         {
           return m_xTranslation;
         }
@@ -103,7 +103,7 @@ namespace noise
         /// the input value.
         ///
         /// @returns The translation amount to apply to the @a y coordinate.
-        real GetYTranslation () const
+        NOISE_REAL GetYTranslation () const
         {
           return m_yTranslation;
         }
@@ -112,7 +112,7 @@ namespace noise
         /// the input value.
         ///
         /// @returns The translation amount to apply to the @a z coordinate.
-        real GetZTranslation () const
+        NOISE_REAL GetZTranslation () const
         {
           return m_zTranslation;
         }
@@ -124,7 +124,7 @@ namespace noise
         /// The GetValue() method moves the ( @a x, @a y, @a z ) coordinates
         /// of the input value by a translation amount before returning the
         /// output value from the source module
-        void SetTranslation (real translation)
+        void SetTranslation (NOISE_REAL translation)
         {
           m_xTranslation = translation;
           m_yTranslation = translation;
@@ -144,8 +144,8 @@ namespace noise
         /// The GetValue() method moves the ( @a x, @a y, @a z ) coordinates
         /// of the input value by a translation amount before returning the
         /// output value from the source module
-        void SetTranslation (real xTranslation, real yTranslation,
-          real zTranslation)
+        void SetTranslation (NOISE_REAL xTranslation, NOISE_REAL yTranslation,
+          NOISE_REAL zTranslation)
         {
           m_xTranslation = xTranslation;
           m_yTranslation = yTranslation;
@@ -161,7 +161,7 @@ namespace noise
         /// The GetValue() method moves the ( @a x, @a y, @a z ) coordinates
         /// of the input value by a translation amount before returning the
         /// output value from the source module
-        void SetXTranslation (real xTranslation)
+        void SetXTranslation (NOISE_REAL xTranslation)
         {
           m_xTranslation = xTranslation;
         }
@@ -175,7 +175,7 @@ namespace noise
         /// The GetValue() method moves the ( @a x, @a y, @a z ) coordinates
         /// of the input value by a translation amount before returning the
         /// output value from the source module
-        void SetYTranslation (real yTranslation)
+        void SetYTranslation (NOISE_REAL yTranslation)
         {
           m_yTranslation = yTranslation;
         }
@@ -189,7 +189,7 @@ namespace noise
         /// The GetValue() method moves the ( @a x, @a y, @a z ) coordinates
         /// of the input value by a translation amount before returning the
         /// output value from the source module
-        void SetZTranslation (real zTranslation)
+        void SetZTranslation (NOISE_REAL zTranslation)
         {
           m_zTranslation = zTranslation;
         }
@@ -198,15 +198,15 @@ namespace noise
 
         /// Translation amount applied to the @a x coordinate of the input
         /// value.
-        real m_xTranslation;
+        NOISE_REAL m_xTranslation;
 
         /// Translation amount applied to the @a y coordinate of the input
         /// value.
-        real m_yTranslation;
+        NOISE_REAL m_yTranslation;
 
         /// Translation amount applied to the @a z coordinate of the input
         /// value.
-        real m_zTranslation;
+        NOISE_REAL m_zTranslation;
 
     };
 

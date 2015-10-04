@@ -31,11 +31,11 @@ Clamp::Clamp ():
 {
 }
 
-real Clamp::GetValue (real x, real y) const
+NOISE_REAL Clamp::GetValue (NOISE_REAL x, NOISE_REAL y) const
 {
   assert (m_pSourceModule[0] != NULL);
 
-  real value = m_pSourceModule[0]->GetValue (x, y);
+  NOISE_REAL value = m_pSourceModule[0]->GetValue (x, y);
   if (value < m_lowerBound) {
     return m_lowerBound;
   } else if (value > m_upperBound) {
@@ -45,7 +45,7 @@ real Clamp::GetValue (real x, real y) const
   }
 }
 
-void Clamp::SetBounds (real lowerBound, real upperBound)
+void Clamp::SetBounds (NOISE_REAL lowerBound, NOISE_REAL upperBound)
 {
   assert (lowerBound < upperBound);
 

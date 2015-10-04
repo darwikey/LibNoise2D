@@ -42,11 +42,11 @@ namespace noise
 
     /// Default displacement to apply to each cell for the
     /// noise::module::Voronoi noise module.
-    const real DEFAULT_VORONOI_DISPLACEMENT = 1.0;
+    const NOISE_REAL DEFAULT_VORONOI_DISPLACEMENT = 1.0;
 
     /// Default frequency of the seed points for the noise::module::Voronoi
     /// noise module.
-    const real DEFAULT_VORONOI_FREQUENCY = 1.0;
+    const NOISE_REAL DEFAULT_VORONOI_FREQUENCY = 1.0;
 
     /// Default seed of the noise function for the noise::module::Voronoi
     /// noise module.
@@ -129,7 +129,7 @@ namespace noise
         /// value from a coherent-noise function.  The <i>displacement
         /// value</i> controls the range of random values to assign to each
         /// cell.  The range of random values is +/- the displacement value.
-        real GetDisplacement () const
+        NOISE_REAL GetDisplacement () const
         {
           return m_displacement;
         }
@@ -140,7 +140,7 @@ namespace noise
         ///
         /// The frequency determines the size of the Voronoi cells and the
         /// distance between these cells.
-        real GetFrequency () const
+        NOISE_REAL GetFrequency () const
         {
           return m_frequency;
         }
@@ -177,7 +177,7 @@ namespace noise
           return m_enableDistance;
         }
 
-        virtual real GetValue (real x, real y) const;
+        virtual NOISE_REAL GetValue (NOISE_REAL x, NOISE_REAL y) const;
 
         /// Sets the displacement value of the Voronoi cells.
         ///
@@ -187,7 +187,7 @@ namespace noise
         /// value from a coherent-noise function.  The <i>displacement
         /// value</i> controls the range of random values to assign to each
         /// cell.  The range of random values is +/- the displacement value.
-        void SetDisplacement (real displacement)
+        void SetDisplacement (NOISE_REAL displacement)
         {
           m_displacement = displacement;
         }
@@ -198,7 +198,7 @@ namespace noise
         ///
         /// The frequency determines the size of the Voronoi cells and the
         /// distance between these cells.
-        void SetFrequency (real frequency)
+        void SetFrequency (NOISE_REAL frequency)
         {
           m_frequency = frequency;
         }
@@ -218,14 +218,14 @@ namespace noise
       protected:
 
         /// Scale of the random displacement to apply to each Voronoi cell.
-        real m_displacement;
+        NOISE_REAL m_displacement;
 
         /// Determines if the distance from the nearest seed point is applied to
         /// the output value.
         bool m_enableDistance;
 
         /// Frequency of the seed points.
-        real m_frequency;
+        NOISE_REAL m_frequency;
 
         /// Seed value used by the coherent-noise function to determine the
         /// positions of the seed points.

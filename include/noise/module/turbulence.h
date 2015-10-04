@@ -41,10 +41,10 @@ namespace noise
     /// @{
 
     /// Default frequency for the noise::module::Turbulence noise module.
-    const real DEFAULT_TURBULENCE_FREQUENCY = DEFAULT_PERLIN_FREQUENCY;
+    const NOISE_REAL DEFAULT_TURBULENCE_FREQUENCY = DEFAULT_PERLIN_FREQUENCY;
 
     /// Default power for the noise::module::Turbulence noise module.
-    const real DEFAULT_TURBULENCE_POWER = 1.0;
+    const NOISE_REAL DEFAULT_TURBULENCE_POWER = 1.0;
 
     /// Default roughness for the noise::module::Turbulence noise module.
     const int DEFAULT_TURBULENCE_ROUGHNESS = 3;
@@ -98,12 +98,12 @@ namespace noise
     ///   initial power) produces nearly pure noise, which isn't entirely
     ///   useful.
     ///
-    /// Displacing the input values result in more realistic terrain and
+    /// Displacing the input values result in more NOISE_REAListic terrain and
     /// textures.  If you are generating elevations for terrain height maps,
-    /// you can use this noise module to produce more realistic mountain
+    /// you can use this noise module to produce more NOISE_REAListic mountain
     /// ranges or terrain features that look like flowing lava rock.  If you
     /// are generating values for textures, you can use this noise module to
-    /// produce realistic marble-like or "oily" textures.
+    /// produce NOISE_REAListic marble-like or "oily" textures.
     ///
     /// Internally, there are three noise::module::Perlin noise modules
     /// that displace the input value; one for the @a x, one for the @a y,
@@ -136,7 +136,7 @@ namespace noise
         ///
         /// The frequency of the turbulence determines how rapidly the
         /// displacement amount changes.
-        real GetFrequency () const;
+        NOISE_REAL GetFrequency () const;
 
         /// Returns the power of the turbulence.
         ///
@@ -144,7 +144,7 @@ namespace noise
         ///
         /// The power of the turbulence determines the scaling factor that is
         /// applied to the displacement amount.
-        real GetPower () const
+        NOISE_REAL GetPower () const
         {
           return m_power;
         }
@@ -177,7 +177,7 @@ namespace noise
           return 1;
         }
 
-        virtual real GetValue (real x, real y) const;
+        virtual NOISE_REAL GetValue (NOISE_REAL x, NOISE_REAL y) const;
 
         /// Sets the frequency of the turbulence.
         ///
@@ -185,7 +185,7 @@ namespace noise
         ///
         /// The frequency of the turbulence determines how rapidly the
         /// displacement amount changes.
-        void SetFrequency (real frequency)
+        void SetFrequency (NOISE_REAL frequency)
         {
           // Set the frequency of each Perlin-noise module.
           m_xDistortModule.SetFrequency (frequency);
@@ -199,7 +199,7 @@ namespace noise
         ///
         /// The power of the turbulence determines the scaling factor that is
         /// applied to the displacement amount.
-        void SetPower (real power)
+        void SetPower (NOISE_REAL power)
         {
           m_power = power;
         }
@@ -243,7 +243,7 @@ namespace noise
       protected:
 
         /// The power (scale) of the displacement.
-        real m_power;
+        NOISE_REAL m_power;
 
         /// Noise module that displaces the @a x coordinate.
         Perlin m_xDistortModule;

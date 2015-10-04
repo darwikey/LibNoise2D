@@ -31,7 +31,7 @@ ScaleBias::ScaleBias ():
 {
 }
 
-real ScaleBias::GetValue (real x, real y) const
+NOISE_REAL ScaleBias::GetValue (NOISE_REAL x, NOISE_REAL y) const
 {
   assert (m_pSourceModule[0] != NULL);
 

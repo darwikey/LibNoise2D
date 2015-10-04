@@ -293,7 +293,7 @@ namespace noise
         ///
         /// To determine the number of source modules required by this noise
         /// module, call the GetSourceModuleCount() method.
-        virtual real GetValue (real x, real y) const = 0;
+        virtual NOISE_REAL GetValue (NOISE_REAL x, NOISE_REAL y) const = 0;
 
         /// Connects a source module to this noise module.
         ///

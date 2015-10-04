@@ -32,7 +32,7 @@ TranslatePoint::TranslatePoint ():
 {
 }
 
-real TranslatePoint::GetValue (real x, real y) const
+NOISE_REAL TranslatePoint::GetValue (NOISE_REAL x, NOISE_REAL y) const
 {
   assert (m_pSourceModule[0] != NULL);
 

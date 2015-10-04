@@ -30,10 +30,10 @@ Exponent::Exponent ():
 {
 }
 
-real Exponent::GetValue (real x, real y) const
+NOISE_REAL Exponent::GetValue (NOISE_REAL x, NOISE_REAL y) const
 {
   assert (m_pSourceModule[0] != NULL);
 
-  real value = m_pSourceModule[0]->GetValue (x, y);
+  NOISE_REAL value = m_pSourceModule[0]->GetValue (x, y);
   return (std::pow (std::abs ((value + 1.0f) / 2.0f), m_exponent) * 2.0f - 1.0f);
 }

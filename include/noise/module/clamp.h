@@ -42,11 +42,11 @@ namespace noise
 
     /// Default lower bound of the clamping range for the noise::module::Clamp
     /// noise module.
-    const real DEFAULT_CLAMP_LOWER_BOUND = -1.0;
+    const NOISE_REAL DEFAULT_CLAMP_LOWER_BOUND = -1.0;
 
     /// Default upper bound of the clamping range for the noise::module::Clamp
     /// noise module.
-    const real DEFAULT_CLAMP_UPPER_BOUND = 1.0;
+    const NOISE_REAL DEFAULT_CLAMP_UPPER_BOUND = 1.0;
 
     /// Noise module that clamps the output value from a source module to a
     /// range of values.
@@ -87,7 +87,7 @@ namespace noise
         /// If the output value from the source module is less than the lower
         /// bound of the clamping range, this noise module clamps that value
         /// to the lower bound.
-        real GetLowerBound () const
+        NOISE_REAL GetLowerBound () const
         {
           return m_lowerBound;
         }
@@ -104,12 +104,12 @@ namespace noise
         /// If the output value from the source module is greater than the
         /// upper bound of the clamping range, this noise module clamps that
         /// value to the upper bound.
-        real GetUpperBound () const
+        NOISE_REAL GetUpperBound () const
         {
           return m_upperBound;
         }
 
-        virtual real GetValue (real x, real y) const;
+        virtual NOISE_REAL GetValue (NOISE_REAL x, NOISE_REAL y) const;
 
         /// Sets the lower and upper bounds of the clamping range.
         ///
@@ -127,15 +127,15 @@ namespace noise
         /// to the lower bound.  If the output value from the source module
         /// is greater than the upper bound of the clamping range, this noise
         /// module clamps that value to the upper bound.
-        void SetBounds (real lowerBound, real upperBound);
+        void SetBounds (NOISE_REAL lowerBound, NOISE_REAL upperBound);
 
       protected:
 
         /// Lower bound of the clamping range.
-        real m_lowerBound;
+        NOISE_REAL m_lowerBound;
 
         /// Upper bound of the clamping range.
-        real m_upperBound;
+        NOISE_REAL m_upperBound;
 
     };
 

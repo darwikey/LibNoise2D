@@ -29,7 +29,7 @@ Add::Add ():
 {
 }
 
-real Add::GetValue (real x, real y) const
+NOISE_REAL Add::GetValue (NOISE_REAL x, NOISE_REAL y) const
 {
   assert (m_pSourceModule[0] != NULL);
   assert (m_pSourceModule[1] != NULL);

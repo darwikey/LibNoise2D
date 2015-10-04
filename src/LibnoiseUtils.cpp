@@ -115,7 +115,7 @@ GradientColor::~GradientColor()
     delete[] m_pGradientPoints;
 }
 
-void GradientColor::AddGradientPoint(real gradientPos,
+void GradientColor::AddGradientPoint(NOISE_REAL gradientPos,
                                      const noise::utils::Color& gradientColor)
 {
     // Find the insertion point for the new gradient point and insert the new
@@ -132,7 +132,7 @@ void GradientColor::Clear()
     m_gradientPointCount = 0;
 }
 
-int GradientColor::FindInsertionPos(real gradientPos)
+int GradientColor::FindInsertionPos(NOISE_REAL gradientPos)
 {
     int insertionPos;
     for (insertionPos = 0; insertionPos < m_gradientPointCount;
@@ -154,7 +154,7 @@ int GradientColor::FindInsertionPos(real gradientPos)
     return insertionPos;
 }
 
-const noise::utils::Color& GradientColor::GetColor(real gradientPos) const
+const noise::utils::Color& GradientColor::GetColor(NOISE_REAL gradientPos) const
 {
     assert(m_gradientPointCount >= 2);
 
@@ -186,9 +186,9 @@ const noise::utils::Color& GradientColor::GetColor(real gradientPos) const
     }
 
     // Compute the alpha value used for linear interpolation.
-    real input0 = m_pGradientPoints[index0].pos;
-    real input1 = m_pGradientPoints[index1].pos;
-    real alpha = (gradientPos - input0) / (input1 - input0);
+    NOISE_REAL input0 = m_pGradientPoints[index0].pos;
+    NOISE_REAL input1 = m_pGradientPoints[index1].pos;
+    NOISE_REAL alpha = (gradientPos - input0) / (input1 - input0);
 
     // Now perform the linear interpolation given the alpha value.
     const Color& color0 = m_pGradientPoints[index0].color;
@@ -197,7 +197,7 @@ const noise::utils::Color& GradientColor::GetColor(real gradientPos) const
     return m_workingColor;
 }
 
-void GradientColor::InsertAtPos(int insertionPos, real gradientPos,
+void GradientColor::InsertAtPos(int insertionPos, NOISE_REAL gradientPos,
 	const noise::utils::Color& gradientColor)
 {
     // Make room for the new gradient point at the specified insertion position
@@ -361,12 +361,12 @@ void NoiseMap::SetSize(int width, int height)
     {
         // A new noise map size was specified.  Allocate a new noise map buffer
         // unless the current buffer is large enough for the new noise map (we
-        // don't want costly reallocations going on.)
+        // don't want costly NOISE_REALlocations going on.)
         size_t newMemUsage = CalcMinMemUsage(width, height);
         if (m_memUsed < newMemUsage)
         {
             // The new size is too big for the current noise map buffer.  We need to
-            // reallocate.
+            // NOISE_REALlocate.
             DeleteNoiseMapAndReset();
             try
             {
@@ -545,12 +545,12 @@ void noise::utils::Image::SetSize(int width, int height)
     {
         // A new image size was specified.  Allocate a new image buffer unless
         // the current buffer is large enough for the new image (we don't want
-        // costly reallocations going on.)
+        // costly NOISE_REALlocations going on.)
         size_t newMemUsage = CalcMinMemUsage(width, height);
         if (m_memUsed < newMemUsage)
         {
             // The new size is too big for the current image buffer.  We need to
-            // reallocate.
+            // NOISE_REALlocate.
             DeleteImageAndReset();
             try
             {
@@ -616,12 +616,12 @@ void NoiseMapBuilder::Build()
     model::Plane planeModel;
     planeModel.SetModule(*m_pSourceModule);
 
-    real xExtent = m_upperXBound - m_lowerXBound;
-    real zExtent = m_upperZBound - m_lowerZBound;
-    real xDelta  = xExtent / (real)m_destWidth ;
-    real zDelta  = zExtent / (real)m_destHeight;
-    real xCur    = m_lowerXBound;
-    real zCur    = m_lowerZBound;
+    NOISE_REAL xExtent = m_upperXBound - m_lowerXBound;
+    NOISE_REAL zExtent = m_upperZBound - m_lowerZBound;
+    NOISE_REAL xDelta  = xExtent / (NOISE_REAL)m_destWidth ;
+    NOISE_REAL zDelta  = zExtent / (NOISE_REAL)m_destHeight;
+    NOISE_REAL xCur    = m_lowerXBound;
+    NOISE_REAL zCur    = m_lowerZBound;
 
     // Fill every point in the noise map with the output values from the model.
     for (int z = 0; z < m_destHeight; z++)
@@ -637,15 +637,15 @@ void NoiseMapBuilder::Build()
             }
             else
             {
-                real swValue, seValue, nwValue, neValue;
+                NOISE_REAL swValue, seValue, nwValue, neValue;
                 swValue = planeModel.GetValue(xCur          , zCur);
                 seValue = planeModel.GetValue(xCur + xExtent, zCur);
                 nwValue = planeModel.GetValue(xCur          , zCur + zExtent);
                 neValue = planeModel.GetValue(xCur + xExtent, zCur + zExtent);
-                real xBlend = 1.0f - ((xCur - m_lowerXBound) / xExtent);
-                real zBlend = 1.0f - ((zCur - m_lowerZBound) / zExtent);
-                real z0 = LinearInterp(swValue, seValue, xBlend);
-                real z1 = LinearInterp(nwValue, neValue, xBlend);
+                NOISE_REAL xBlend = 1.0f - ((xCur - m_lowerXBound) / xExtent);
+                NOISE_REAL zBlend = 1.0f - ((zCur - m_lowerZBound) / zExtent);
+                NOISE_REAL z0 = LinearInterp(swValue, seValue, xBlend);
+                NOISE_REAL z1 = LinearInterp(nwValue, neValue, xBlend);
                 finalValue = (float)LinearInterp(z0, z1, zBlend);
             }
             *pDest++ = finalValue;
@@ -674,12 +674,12 @@ void NoiseMapBuilder::Build(std::function<void(int, int, float)> fCallback)
 	model::Plane planeModel;
 	planeModel.SetModule(*m_pSourceModule);
 
-	real xExtent = m_upperXBound - m_lowerXBound;
-	real zExtent = m_upperZBound - m_lowerZBound;
-	real xDelta = xExtent / (real)m_destWidth;
-	real zDelta = zExtent / (real)m_destHeight;
-	real xCur = m_lowerXBound;
-	real zCur = m_lowerZBound;
+	NOISE_REAL xExtent = m_upperXBound - m_lowerXBound;
+	NOISE_REAL zExtent = m_upperZBound - m_lowerZBound;
+	NOISE_REAL xDelta = xExtent / (NOISE_REAL)m_destWidth;
+	NOISE_REAL zDelta = zExtent / (NOISE_REAL)m_destHeight;
+	NOISE_REAL xCur = m_lowerXBound;
+	NOISE_REAL zCur = m_lowerZBound;
 
 	// Fill every point in the noise map with the output values from the model.
 	for (int z = 0; z < m_destHeight; z++)
@@ -694,15 +694,15 @@ void NoiseMapBuilder::Build(std::function<void(int, int, float)> fCallback)
 			}
 			else
 			{
-				real swValue, seValue, nwValue, neValue;
+				NOISE_REAL swValue, seValue, nwValue, neValue;
 				swValue = planeModel.GetValue(xCur, zCur);
 				seValue = planeModel.GetValue(xCur + xExtent, zCur);
 				nwValue = planeModel.GetValue(xCur, zCur + zExtent);
 				neValue = planeModel.GetValue(xCur + xExtent, zCur + zExtent);
-				real xBlend = 1.0f - ((xCur - m_lowerXBound) / xExtent);
-				real zBlend = 1.0f - ((zCur - m_lowerZBound) / zExtent);
-				real z0 = LinearInterp(swValue, seValue, xBlend);
-				real z1 = LinearInterp(nwValue, neValue, xBlend);
+				NOISE_REAL xBlend = 1.0f - ((xCur - m_lowerXBound) / xExtent);
+				NOISE_REAL zBlend = 1.0f - ((zCur - m_lowerZBound) / zExtent);
+				NOISE_REAL z0 = LinearInterp(swValue, seValue, xBlend);
+				NOISE_REAL z1 = LinearInterp(nwValue, neValue, xBlend);
 				finalValue = (float)LinearInterp(z0, z1, zBlend);
 			}
 			// callback

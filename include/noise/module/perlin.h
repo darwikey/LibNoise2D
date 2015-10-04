@@ -41,16 +41,16 @@ namespace noise
     /// @{
 
     /// Default frequency for the noise::module::Perlin noise module.
-    const real DEFAULT_PERLIN_FREQUENCY = 1.0;
+    const NOISE_REAL DEFAULT_PERLIN_FREQUENCY = 1.0;
 
     /// Default lacunarity for the noise::module::Perlin noise module.
-    const real DEFAULT_PERLIN_LACUNARITY = 2.0;
+    const NOISE_REAL DEFAULT_PERLIN_LACUNARITY = 2.0;
 
     /// Default number of octaves for the noise::module::Perlin noise module.
     const int DEFAULT_PERLIN_OCTAVE_COUNT = 6;
 
     /// Default persistence value for the noise::module::Perlin noise module.
-    const real DEFAULT_PERLIN_PERSISTENCE = 0.5;
+    const NOISE_REAL DEFAULT_PERLIN_PERSISTENCE = 0.5;
 
     /// Default noise quality for the noise::module::Perlin noise module.
     const noise::NoiseQuality DEFAULT_PERLIN_QUALITY = QUALITY_STD;
@@ -99,9 +99,9 @@ namespace noise
     /// noise by calling the SetOctaveCount() method.
     ///
     /// These coherent-noise functions are called octaves because each octave
-    /// has, by default, real the frequency of the previous octave.  Musical
+    /// has, by default, NOISE_REAL the frequency of the previous octave.  Musical
     /// tones have this property as well; a musical C tone that is one octave
-    /// higher than the previous C tone has real its frequency.
+    /// higher than the previous C tone has NOISE_REAL its frequency.
     ///
     /// <b>Frequency</b>
     ///
@@ -183,7 +183,7 @@ namespace noise
         /// Returns the frequency of the first octave.
         ///
         /// @returns The frequency of the first octave.
-        real GetFrequency () const
+        NOISE_REAL GetFrequency () const
         {
           return m_frequency;
         }
@@ -194,7 +194,7 @@ namespace noise
         /// 
         /// The lacunarity is the frequency multiplier between successive
         /// octaves.
-        real GetLacunarity () const
+        NOISE_REAL GetLacunarity () const
         {
           return m_lacunarity;
         }
@@ -226,7 +226,7 @@ namespace noise
         /// @returns The persistence value of the Perlin noise.
         ///
         /// The persistence value controls the roughness of the Perlin noise.
-        real GetPersistence () const
+        NOISE_REAL GetPersistence () const
         {
           return m_persistence;
         }
@@ -244,12 +244,12 @@ namespace noise
           return 0;
         }
 
-        virtual real GetValue (real x, real y) const;
+        virtual NOISE_REAL GetValue (NOISE_REAL x, NOISE_REAL y) const;
 
         /// Sets the frequency of the first octave.
         ///
         /// @param frequency The frequency of the first octave.
-        void SetFrequency (real frequency)
+        void SetFrequency (NOISE_REAL frequency)
         {
           m_frequency = frequency;
         }
@@ -263,7 +263,7 @@ namespace noise
         ///
         /// For best results, set the lacunarity to a number between 1.5 and
         /// 3.5.
-        void SetLacunarity (real lacunarity)
+        void SetLacunarity (NOISE_REAL lacunarity)
         {
           m_lacunarity = lacunarity;
         }
@@ -311,7 +311,7 @@ namespace noise
         ///
         /// For best results, set the persistence to a number between 0.0 and
         /// 1.0.
-        void SetPersistence (real persistence)
+        void SetPersistence (NOISE_REAL persistence)
         {
           m_persistence = persistence;
         }
@@ -327,10 +327,10 @@ namespace noise
       protected:
 
         /// Frequency of the first octave.
-        real m_frequency;
+        NOISE_REAL m_frequency;
 
         /// Frequency multiplier between successive octaves.
-        real m_lacunarity;
+        NOISE_REAL m_lacunarity;
 
         /// Quality of the Perlin noise.
         noise::NoiseQuality m_noiseQuality;
@@ -339,7 +339,7 @@ namespace noise
         int m_octaveCount;
 
         /// Persistence of the Perlin noise.
-        real m_persistence;
+        NOISE_REAL m_persistence;
 
         /// Seed value used by the Perlin-noise function.
         int m_seed;

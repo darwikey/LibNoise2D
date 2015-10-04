@@ -41,10 +41,10 @@ namespace noise
     {
 
       /// The input value.
-      real inputValue;
+      NOISE_REAL inputValue;
 
       /// The output value that is mapped from the input value.
-      real outputValue;
+      NOISE_REAL outputValue;
 
     };
 
@@ -100,7 +100,7 @@ namespace noise
         /// specified; see the preconditions for more information.
         ///
         /// It does not matter which order these points are added.
-        void AddControlPoint (real inputValue, real outputValue);
+        void AddControlPoint (NOISE_REAL inputValue, NOISE_REAL outputValue);
 
         /// Deletes all the control points on the curve.
         ///
@@ -135,7 +135,7 @@ namespace noise
           return 1;
         }
 
-        virtual real GetValue (real x, real y) const;
+        virtual NOISE_REAL GetValue (NOISE_REAL x, NOISE_REAL y) const;
 
       protected:
 
@@ -155,7 +155,7 @@ namespace noise
         /// class ensures that the control point array is sorted by input
         /// value.  The code that maps a value onto the curve requires a
         /// sorted control point array.
-        int FindInsertionPos (real inputValue);
+        int FindInsertionPos (NOISE_REAL inputValue);
 
         /// Inserts the control point at the specified position in the
         /// internal control point array.
@@ -165,7 +165,7 @@ namespace noise
         /// @param inputValue The input value stored in the control point.
         /// @param outputValue The output value stored in the control point.
         ///
-        /// To make room for this new control point, this method reallocates
+        /// To make room for this new control point, this method NOISE_REALlocates
         /// the control point array and shifts all control points occurring
         /// after the insertion position up by one.
         ///
@@ -173,8 +173,8 @@ namespace noise
         /// requires that all control points in the array must be sorted by
         /// input value, the new control point should be inserted at the
         /// position in which the order is still preserved.
-        void InsertAtPos (int insertionPos, real inputValue,
-          real outputValue);
+        void InsertAtPos (int insertionPos, NOISE_REAL inputValue,
+          NOISE_REAL outputValue);
 
         /// Number of control points on the curve.
         int m_controlPointCount;

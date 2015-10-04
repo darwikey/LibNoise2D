@@ -43,7 +43,7 @@ namespace noise
   ///
   /// @pre lat must range from @b -90 to @b +90.
   /// @pre lon must range from @b -180 to @b +180.
-  void LatLonToXYZ (real lat, real lon, real& x, real& y, real& z);
+  void LatLonToXYZ (NOISE_REAL lat, NOISE_REAL lon, NOISE_REAL& x, NOISE_REAL& y, NOISE_REAL& z);
 
   /// @}
 

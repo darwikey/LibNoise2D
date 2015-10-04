@@ -47,7 +47,7 @@ namespace noise
     /// This noise module outputs unit-sized blocks of alternating values.
     /// The values of these blocks alternate between -1.0 and +1.0.
     ///
-    /// This noise module is not really useful by itself, but it is often used
+    /// This noise module is not NOISE_REALly useful by itself, but it is often used
     /// for debugging purposes.
     ///
     /// This noise module does not require any source modules.
@@ -64,7 +64,7 @@ namespace noise
         return 0;
         }
 
-        virtual real GetValue (real x, real y) const;
+        virtual NOISE_REAL GetValue (NOISE_REAL x, NOISE_REAL y) const;
 
     };
 

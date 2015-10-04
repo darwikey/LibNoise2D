@@ -25,7 +25,7 @@
 
 #include <cmath>
 
-#define real float
+#define NOISE_REAL float
 
 // For whatever reason, I can't find the basic math consts in the MSVC version
 // of math.h.
@@ -37,19 +37,19 @@ namespace noise
   /// @{
 
   /// Pi.
-  const real PI = (real)3.1415926535897932385;
+  const NOISE_REAL PI = (NOISE_REAL)3.1415926535897932385;
 
   /// Square root of 2.
-  const real SQRT_2 = (real)1.4142135623730950488;
+  const NOISE_REAL SQRT_2 = (NOISE_REAL)1.4142135623730950488;
 
   /// Square root of 3.
-  const real SQRT_3 = (real)1.7320508075688772935;
+  const NOISE_REAL SQRT_3 = (NOISE_REAL)1.7320508075688772935;
 
   /// Converts an angle from degrees to radians.
-  const real DEG_TO_RAD = PI / (real)180.0;
+  const NOISE_REAL DEG_TO_RAD = PI / (NOISE_REAL)180.0;
 
   /// Converts an angle from radians to degrees.
-  const real RAD_TO_DEG = (real)1.0 / DEG_TO_RAD;
+  const NOISE_REAL RAD_TO_DEG = (NOISE_REAL)1.0 / DEG_TO_RAD;
 
   /// @}
 

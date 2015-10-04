@@ -35,7 +35,7 @@ Plane::Plane (const module::Module& module) :
 }
 
 // Told you this was trivial.
-real Plane::GetValue (real x, real z) const
+NOISE_REAL Plane::GetValue (NOISE_REAL x, NOISE_REAL z) const
 {
   assert (m_pModule != NULL);
   

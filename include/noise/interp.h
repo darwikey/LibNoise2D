@@ -45,13 +45,13 @@ namespace noise
   /// The alpha value should range from 0.0 to 1.0.  If the alpha value is
   /// 0.0, this function returns @a n1.  If the alpha value is 1.0, this
   /// function returns @a n2.
-  inline real CubicInterp (real n0, real n1, real n2, real n3,
-    real a)
+  inline NOISE_REAL CubicInterp (NOISE_REAL n0, NOISE_REAL n1, NOISE_REAL n2, NOISE_REAL n3,
+    NOISE_REAL a)
   {
-	  real p = (n3 - n2) - (n0 - n1);
-	  real q = (n0 - n1) - p;
-	  real r = n2 - n0;
-	  real s = n1;
+	  NOISE_REAL p = (n3 - n2) - (n0 - n1);
+	  NOISE_REAL q = (n0 - n1) - p;
+	  NOISE_REAL r = n2 - n0;
+	  NOISE_REAL s = n1;
 	  return p * a * a * a + q * a * a + r * a + s;
   }
 
@@ -66,7 +66,7 @@ namespace noise
   /// The alpha value should range from 0.0 to 1.0.  If the alpha value is
   /// 0.0, this function returns @a n0.  If the alpha value is 1.0, this
   /// function returns @a n1.
-  inline real LinearInterp (real n0, real n1, real a)
+  inline NOISE_REAL LinearInterp (NOISE_REAL n0, NOISE_REAL n1, NOISE_REAL a)
   {
     return ((1.0f - a) * n0) + (a * n1);
   }
@@ -81,7 +81,7 @@ namespace noise
   ///
   /// The derivitive of a cubic S-curve is zero at @a a = 0.0 and @a a =
   /// 1.0
-  inline real SCurve3 (real a)
+  inline NOISE_REAL SCurve3 (NOISE_REAL a)
   {
     return (a * a * (3.0f - 2.0f * a));
   }
@@ -99,11 +99,11 @@ namespace noise
   ///
   /// The second derivitive of a quintic S-curve is zero at @a a = 0.0 and
   /// @a a = 1.0
-  inline real SCurve5 (real a)
+  inline NOISE_REAL SCurve5 (NOISE_REAL a)
   {
-    real a3 = a * a * a;
-    real a4 = a3 * a;
-    real a5 = a4 * a;
+    NOISE_REAL a3 = a * a * a;
+    NOISE_REAL a4 = a3 * a;
+    NOISE_REAL a5 = a4 * a;
     return (6.0f * a5) - (15.0f * a4) + (10.0f * a3);
   }
 

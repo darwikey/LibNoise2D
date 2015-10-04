@@ -24,10 +24,10 @@
 
 using namespace noise;
 
-void noise::LatLonToXYZ (real lat, real lon, real& x, real& y,
-  real& z)
+void noise::LatLonToXYZ (NOISE_REAL lat, NOISE_REAL lon, NOISE_REAL& x, NOISE_REAL& y,
+  NOISE_REAL& z)
 {
-  real r = cos (DEG_TO_RAD * lat);
+  NOISE_REAL r = cos (DEG_TO_RAD * lat);
   x = r * cos (DEG_TO_RAD * lon);
   y =     sin (DEG_TO_RAD * lat);
   z = r * sin (DEG_TO_RAD * lon);

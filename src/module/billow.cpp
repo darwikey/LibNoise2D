@@ -35,12 +35,12 @@ Billow::Billow ():
 {
 }
 
-real Billow::GetValue (real x, real y) const
+NOISE_REAL Billow::GetValue (NOISE_REAL x, NOISE_REAL y) const
 {
-  real value = 0.0;
-  real signal = 0.0;
-  real curPersistence = 1.0;
-  real nx, ny;
+  NOISE_REAL value = 0.0;
+  NOISE_REAL signal = 0.0;
+  NOISE_REAL curPersistence = 1.0;
+  NOISE_REAL nx, ny;
   int seed;
 
   x *= m_frequency;
