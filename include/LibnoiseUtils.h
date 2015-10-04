@@ -30,7 +30,6 @@
 
 #include <noise.h>
 
-using namespace noise;
 
 namespace noise
 {
